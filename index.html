@@ -219,33 +219,46 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <p class="hf" id="heroFrase"></p>
 <div class="cd" id="countdown"></div>
 </header>
- 
+
 <section style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;text-align:center;position:relative;z-index:2">
-<h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:#3A1F26;font-size:clamp(1.7rem,4vw,2.4rem)">Nuestros mejores momentos</h2>
-<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#7A5A63;max-width:60ch;margin:1rem auto 2.5rem;line-height:1.8">Contigo cada momento se convierte en un recuerdo que quiero guardar para siempre. Sabes que a mi me gusta mucho reirme y contigo somos mucho amor, pero tambien peleas y risas, caras raras y momentos que no cambiaria por nada. Dale play y recuerda conmigo.</p>
+<div id="momentsToggle" style="cursor:pointer;background:linear-gradient(145deg,#fff,#fff5f8);border:2px solid #F8BBD0;border-radius:16px;padding:1.8rem 1.5rem;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
+<span style="font-size:2.5rem;display:block;margin-bottom:.5rem">🎬</span>
+<h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:#3A1F26;font-size:clamp(1.5rem,3.5vw,2rem);margin:0">Nuestros mejores momentos</h2>
+<p style="font-family:'Caveat',cursive;font-size:1.1rem;color:#A3808A;margin:.5rem 0 0">Toca aqui para ver nuestros videos juntos <span id="momentsArrow" style="display:inline-block;transition:transform .3s">&#9660;</span></p>
+</div>
+<div id="momentsContent" style="display:none;margin-top:1.5rem;animation:la .6s ease-out both">
+<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#7A5A63;max-width:60ch;margin:0 auto 2rem;line-height:1.8">Contigo cada momento se convierte en un recuerdo que quiero guardar para siempre. Sabes que a mi me gusta mucho reirme y contigo somos mucho amor, pero tambien peleas y risas, caras raras y momentos que no cambiaria por nada. Dale play y recuerda conmigo.</p>
+<audio id="bgMusic" preload="auto" loop>
+<source src="cancion.mp3.mp3" type="audio/mpeg">
+</audio>
+<div style="margin-bottom:1.5rem">
+<button id="bgMusicBtn" style="padding:.7rem 1.8rem;background:linear-gradient(135deg,#E0457B,#C42D63);color:#fff;border:none;border-radius:25px;font-family:'Caveat',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 15px -5px rgba(224,69,123,.4);transition:transform .2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">&#x1F3B5; Reproducir musica de fondo</button>
+</div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:800px;margin:0 auto">
 <div style="background:#fff;border-radius:14px;overflow:hidden;border:2px solid #F8BBD0;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
-<video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
+<video class="momVid" controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
 <source src="https://i.imgur.com/eZHTZSH.mp4" type="video/mp4"></video>
 </div>
 <div style="background:#fff;border-radius:14px;overflow:hidden;border:2px solid #F8BBD0;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
-<video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
+<video class="momVid" controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
 <source src="https://i.imgur.com/nVvV5LE.mp4" type="video/mp4"></video>
 </div>
 <div style="background:#fff;border-radius:14px;overflow:hidden;border:2px solid #F8BBD0;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
-<video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
+<video class="momVid" controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
 <source src="https://i.imgur.com/vAvPZpd.mp4" type="video/mp4"></video>
 </div>
 <div style="background:#fff;border-radius:14px;overflow:hidden;border:2px solid #F8BBD0;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
-<video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
+<video class="momVid" controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
 <source src="https://i.imgur.com/f78OKjN.mp4" type="video/mp4"></video>
 </div>
 <div style="background:#fff;border-radius:14px;overflow:hidden;border:2px solid #F8BBD0;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 30px -8px rgba(224,69,123,.25)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px -8px rgba(224,69,123,.12)'">
-<video controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
+<video class="momVid" controls playsinline preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000">
 <source src="https://i.imgur.com/D1kZJJv.mp4" type="video/mp4"></video>
 </div>
 </div>
+</div>
 </section>
+
 <section class="cls">
 <h2>Un mensaje para cada dia</h2>
 <p class="si" style="margin-left:auto;margin-right:auto;">Cada sobre se abre solo cuando llega su dia. Los que ya pasaron, puedes volver a abrirlos cuando quieras.</p>
@@ -562,6 +575,59 @@ fs.style.animation='la .8s ease-out both';
 document.getElementById('finalLetter').textContent=C.mf;
 document.getElementById('finalSignature').textContent=C.r;
 conf();hBurst();},3200);});
+ 
+/* MOMENTS SECTION */
+var momToggle=document.getElementById('momentsToggle');
+var momContent=document.getElementById('momentsContent');
+var momArrow=document.getElementById('momentsArrow');
+var bgMusic=document.getElementById('bgMusic');
+var bgMusicBtn=document.getElementById('bgMusicBtn');
+var bgPlaying=false;
+var momOpen=false;
+momToggle.addEventListener('click',function(){
+momOpen=!momOpen;
+if(momOpen){
+momContent.style.display='block';
+momContent.style.animation='la .6s ease-out both';
+momArrow.style.transform='rotate(180deg)';
+}else{
+momContent.style.display='none';
+momArrow.style.transform='rotate(0deg)';
+if(bgPlaying){bgMusic.pause();bgPlaying=false;
+bgMusicBtn.innerHTML='\u{1F3B5} Reproducir musica de fondo';}
+}
+});
+bgMusicBtn.addEventListener('click',function(e){
+e.stopPropagation();
+if(bgPlaying){
+bgMusic.pause();bgPlaying=false;
+bgMusicBtn.innerHTML='\u{1F3B5} Reproducir musica de fondo';
+}else{
+bgMusic.play().catch(function(){});bgPlaying=true;
+bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';
+}
+});
+var momVids=document.querySelectorAll('.momVid');
+momVids.forEach(function(vid){
+vid.addEventListener('play',function(){
+if(bgPlaying){bgMusic.pause();
+bgMusicBtn.innerHTML='\u{1F3B5} Reproducir musica de fondo';}
+momVids.forEach(function(other){
+if(other!==vid&&!other.paused)other.pause();
+});
+});
+vid.addEventListener('pause',function(){
+var anyPlaying=false;
+momVids.forEach(function(v){if(!v.paused)anyPlaying=true;});
+if(!anyPlaying&&bgPlaying){
+bgMusic.play().catch(function(){});
+bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';}
+});
+vid.addEventListener('ended',function(){
+if(bgPlaying){bgMusic.play().catch(function(){});
+bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';}
+});
+});
 if(ya||adm)qS.hidden=false;
 </script>
 </body>
