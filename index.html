@@ -241,6 +241,8 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <div class="ea" id="envAnim"><div class="eab"></div><div class="lp" id="lPull"><div style="font-size:2rem;color:var(--pk)">💌</div><div style="font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pkd)">Para ti, Brigith...</div></div><div class="eai"></div><div class="eaf" id="eFlap"></div><div class="eas" id="eSeal">P</div></div>
 </div>
 <div class="mo" id="modalOverlay" hidden><div class="lsc" id="layersCont"></div></div>
+
+
 <script>
 var C={n:"Brigith",r:"Paolo",fa:"2026-09-08",
 fh:"Siete dias, siete cartas, y todo lo que siento por ti.",
@@ -261,12 +263,10 @@ cartas:[
 {s:"https://i.imgur.com/kAOuU2R.jpeg",c:""},{s:"https://i.imgur.com/hEn3JXv.jpeg",c:""},
 {s:"https://i.imgur.com/9IOYroz.jpeg",c:""},{s:"https://i.imgur.com/xFdLsh7.jpeg",c:""},
 {s:"https://i.imgur.com/KpioTZm.jpeg",c:""},{s:"https://i.imgur.com/TkL5J3h.jpeg",c:""},
-{s:"https://i.imgur.com/FSQaAYO.jpeg",c:""}]}
-]},
+{s:"https://i.imgur.com/FSQaAYO.jpeg",c:""}]}]},
 {fecha:"2026-09-09",titulo:"Lo que mas amo de ti",efecto:"",capas:[
 {emoji:"\u{1F339}",titulo:"Lo que mas amo de ti",texto:"Sabes que es lo que mas amo de ti? Tu mente, tu forma de pensar, como siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razon. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mi y me apoyas en todo. Tu no solo eres mi novia, eres la persona mas sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. \u{1F339}",boton:"Ver foto \u{1F4F8}"},
-{tipo:"gal",titulo:"Mi persona favorita \u{1F339}",fotos:[{s:"https://i.imgur.com/rKwSxCs.jpeg",c:"Te amo \u{1F495}"}]}
-]},
+{tipo:"gal",titulo:"Mi persona favorita \u{1F339}",fotos:[{s:"https://i.imgur.com/rKwSxCs.jpeg",c:"Te amo \u{1F495}"}]}]},
 {fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazon",efecto:"",capas:[
 {emoji:"\u{1F4F8}",titulo:"Un recuerdo que guardo en el corazon",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que queria estar. No necesite mas senales, solo basto verte, sentirte cerca, y saber que contigo todo tenia sentido. Ese recuerdo lo guardo como un tesoro. \u{1F4F8}"}]},
 {fecha:"2026-09-11",titulo:"Lo que admiro de ti",efecto:"",capas:[
@@ -293,7 +293,6 @@ document.title='Para '+C.n;
 document.getElementById('heroTitle').textContent='Para '+C.n;
 document.getElementById('heroFrase').textContent=C.fh;
 document.getElementById('footerSignature').textContent=C.r;
-/* SPLASH */
 var spl=document.getElementById('splash'),sEnv=document.getElementById('splashEnv');
 var sCd=document.getElementById('splashCd'),sBtn=document.getElementById('splashBtn');
 var sHint=document.getElementById('splashHint'),sS=false,sT=null;
@@ -314,13 +313,11 @@ setTimeout(function(){sBtn.classList.add('show');},500);
 sHint.textContent='';
 function updSplash(){
 var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
-if(df<=0){clearInterval(sT);
-sHint.textContent='\u{1F496} Hoy es el dia!';
+if(df<=0){clearInterval(sT);sHint.textContent='\u{1F496} Hoy es el dia!';
 sCd.classList.add('today');sCd.textContent='Tu sorpresa esta lista! \u{1F381}';
 sBtn.classList.add('show');return;}
 var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
-var txt='Faltan ';
-if(d>0)txt+=d+(d===1?' dia, ':' dias, ');
+var txt='Faltan ';if(d>0)txt+=d+(d===1?' dia, ':' dias, ');
 txt+=h+'h '+m+'m '+sc+'s';
 sHint.innerHTML='\u23F3 '+txt+' para abrir tu sorpresa \u{1F381}';
 sCd.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">dias</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
@@ -329,14 +326,12 @@ if(adm){setTimeout(function(){sBtn.classList.add('show');sBtn.textContent='\u{1F
 }},2000);});
 sBtn.addEventListener('click',function(){if(sT)clearInterval(sT);spl.classList.add('hide');
 setTimeout(function(){spl.hidden=true;document.getElementById('mainPage').classList.add('vis');},800);});
-/* COUNTDOWN */
 var cdEl=document.getElementById('countdown');
 function rCd(){var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
 if(df<=0||adm){cdEl.classList.add('tb');cdEl.textContent=df<=0?'Hoy, '+ff(fa):'\u{1F527} Vista previa';return;}
 var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
 cdEl.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">dias</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
 rCd();setInterval(rCd,1e3);
-/* CLOTHESLINE */
 var clEl=document.getElementById('clothesline');
 var co=[].concat(C.cartas).sort(function(a,b){return pld(a.fecha)-pld(b.fecha);});
 co.forEach(function(ct){var f=pld(ct.fecha),ul=adm||today>=f;
@@ -344,22 +339,18 @@ var esPrincipal=ct.fecha===C.fa;
 var it=document.createElement('div');
 it.className='li '+(ul?'ul':'lk')+(esPrincipal?' principal':'');
 var cl=document.createElement('div');cl.className='clip';it.appendChild(cl);
-if(esPrincipal){
-var sparkles=document.createElement('div');sparkles.className='sparkles';
+if(esPrincipal){var sparkles=document.createElement('div');sparkles.className='sparkles';
 sparkles.innerHTML='<span>\u2728</span><span>\u2B50</span><span>\u{1F4AB}</span><span>\u2728</span><span>\u2B50</span>';
-it.appendChild(sparkles);
-var glow=document.createElement('div');glow.className='glow-ring';it.appendChild(glow);}
+it.appendChild(sparkles);var glow=document.createElement('div');glow.className='glow-ring';it.appendChild(glow);}
 var bt=document.createElement('button');bt.className='envb '+(ul?'ul':'lk');
 var se=document.createElement('div');se.className='ms';bt.appendChild(se);
 if(ul)bt.addEventListener('click',(function(c){return function(){seA(c);};})(ct));
 else bt.disabled=true;it.appendChild(bt);
 var cp=document.createElement('p');cp.className='lc';
-cp.textContent=ul?fdm(f):'Se abre el '+fdm(f);
-it.appendChild(cp);
+cp.textContent=ul?fdm(f):'Se abre el '+fdm(f);it.appendChild(cp);
 if(esPrincipal){var tag=document.createElement('span');tag.className='tag';
 tag.textContent='\u{1F496} Nuestro dia';it.appendChild(tag);}
 clEl.appendChild(it);});
-/* ENV ANIM */
 var eo=document.getElementById('envOverlay'),eF=document.getElementById('eFlap');
 var eS=document.getElementById('eSeal'),lPl=document.getElementById('lPull'),cC=null;
 function seA(ct){cC=ct;eF.classList.remove('open');eS.classList.remove('brk');lPl.classList.remove('out');
@@ -378,7 +369,8 @@ p.style.setProperty('--tx',Math.cos(a*Math.PI/180)*d+'px');
 p.style.setProperty('--ty',Math.sin(a*Math.PI/180)*d+'px');
 p.style.fontSize=(.8+Math.random()*1.2)+'rem';c.appendChild(p);}
 setTimeout(function(){c.remove();},1500);}
-/* MODAL */
+
+
 var mO=document.getElementById('modalOverlay'),lC=document.getElementById('layersCont'),twI=null,gI=0;
 function oL(ct){lC.innerHTML='';if(ct.capas&&ct.capas.length>0)sL(ct,0);else sSi(ct);mO.hidden=false;}
 function sL(ct,idx){var cp=ct.capas[idx];lC.innerHTML='';if(twI){clearInterval(twI);twI=null;}
@@ -432,4 +424,92 @@ var p=document.createElement('p');
 if(ct.capas&&ct.capas[0])p.textContent=ct.capas[0].texto;
 card.appendChild(p);lC.appendChild(card);}
 function uG(tr,ds,tot){tr.style.transform='translateX(-'+gI*100+'%)';
-var ad=ds.querySelectorAll('.
+var ad=ds.querySelectorAll('.gdt');
+for(var i=0;i<ad.length;i++)ad[i].className='gdt'+(i===gI?' act':'');
+var c=document.getElementById('gctr');if(c)c.textContent=(gI+1)+' / '+tot;}
+function twE(el,text){if(twI)clearInterval(twI);var i=0;
+var cur=document.createElement('span');cur.className='twc';
+el.textContent='';el.appendChild(cur);
+twI=setInterval(function(){if(i<text.length){
+el.insertBefore(document.createTextNode(text.charAt(i)),cur);i++;}
+else{clearInterval(twI);twI=null;setTimeout(function(){cur.remove();},2000);}},40);}
+function conf(){var c=document.createElement('div');c.className='cc';document.body.appendChild(c);
+var cls=['#E0457B','#F06292','#F8BBD0','#FCE4EC','#C42D63','#ff6b9d'];
+for(var i=0;i<40;i++){var p=document.createElement('div');p.className='cp';
+p.style.left=Math.random()*100+'%';
+p.style.background=cls[Math.floor(Math.random()*cls.length)];
+p.style.width=(6+Math.random()*8)+'px';p.style.height=(6+Math.random()*8)+'px';
+p.style.borderRadius=Math.random()>.5?'50%':'2px';
+p.style.animationDuration=(2+Math.random()*3)+'s';
+p.style.animationDelay=Math.random()*.8+'s';c.appendChild(p);}
+setTimeout(function(){c.remove();},5000);}
+function cM(ct){mO.hidden=true;if(twI){clearInterval(twI);twI=null;}
+lC.innerHTML='';if(ct&&ct.musica)sm();}
+mO.addEventListener('click',function(e){if(e.target===mO)cM(cC);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cM(cC);});
+var qA=document.getElementById('quizAlert'),qS=document.getElementById('quizSection');
+var q1=document.getElementById('quizOpt1'),q2=document.getElementById('quizOpt2'),q3=document.getElementById('quizOpt3');
+q1.addEventListener('click',function(){qA.hidden=false;qA.className='qa w';
+qA.textContent='\u274C Jajaja no, incorrecto. Intenta de nuevo! \u{1F605}';});
+var ac2=0;
+q2.addEventListener('click',function(){ac2++;qA.hidden=false;
+if(ac2===1){qA.className='qa w';qA.textContent='\u274C Incorrecto... hmm, segura? \u{1F914}';}
+else if(ac2>=2){qA.className='qa w';
+qA.textContent='\u274C Sigue sin ser... pero mira, aparecio una nueva opcion! \u{1F440}';
+q3.style.display='block';q3.style.animation='la .5s ease-out both';}});
+var mc3=0;
+q3.addEventListener('click',function(){mc3++;qA.hidden=false;
+if(mc3===1){qA.className='qa w';qA.textContent='\u274C Incorrecto tambien... o si? \u{1F928}';}
+else if(mc3>=2){qA.className='qa s';
+qA.textContent='\u2705 No mentira, si esta bien! \u{1F602}\u{1F496} Ahora una cosa mas...';
+q1.disabled=true;q2.disabled=true;q3.disabled=true;
+q1.style.opacity='.4';q2.style.opacity='.4';q3.style.opacity='.4';
+setTimeout(function(){qS.style.transition='opacity .5s,transform .5s';
+qS.style.opacity='0';qS.style.transform='translateY(-20px)';},1800);
+setTimeout(function(){qS.hidden=true;
+document.getElementById('numberSection').hidden=false;
+document.getElementById('numberSection').style.animation='la .6s ease-out both';
+document.getElementById('numberInput').focus();},2500);}});
+var nI=document.getElementById('numberInput'),nB=document.getElementById('numberBtn');
+var nA=document.getElementById('numberAlert');
+function chN(){var v=nI.value.trim();nA.hidden=false;
+if(v==='7'){nA.className='qa s';nA.textContent='\u2705 Correcto! \u{1F496} Pero falta una mas...';
+nB.disabled=true;nI.disabled=true;
+setTimeout(function(){var ns=document.getElementById('numberSection');
+ns.style.transition='opacity .5s,transform .5s';ns.style.opacity='0';
+ns.style.transform='translateY(-20px)';},1500);
+setTimeout(function(){document.getElementById('numberSection').hidden=true;
+document.getElementById('finalNumSection').hidden=false;
+document.getElementById('finalNumSection').style.animation='la .6s ease-out both';},2200);
+}else{nA.className='qa w';nA.textContent='\u274C Ese no es... piensalo bien! \u{1F60F}';
+nI.value='';nI.focus();}}
+nB.addEventListener('click',chN);
+nI.addEventListener('keydown',function(e){if(e.key==='Enter')chN();});
+var fn1=document.getElementById('fnOpt1'),fn2=document.getElementById('fnOpt2');
+var fn3=document.getElementById('fnOpt3'),fn4=document.getElementById('fnOpt4');
+var fnA=document.getElementById('finalNumAlert');
+function fnWrong(txt){fnA.hidden=false;fnA.className='qa w';fnA.textContent=txt;}
+fn1.addEventListener('click',function(){fnWrong('\u274C No, todavia no hemos cumplido esos... o ya los pasamos! \u{1F605}');});
+fn2.addEventListener('click',function(){fnWrong('\u274C Cerquita pero no... piensa bien! \u{1F914}');});
+fn4.addEventListener('click',function(){fnWrong('\u274C Aun no llegamos ahi... pero llegaremos! \u{1F60F}\u{1F495}');});
+fn3.addEventListener('click',function(){
+fnA.hidden=false;fnA.className='qa s';
+fnA.textContent='\u2705 Ese es mi otro numero favorito que lo encontre gracias a ti! \u{1F979}\u{1F496}';
+fn1.disabled=true;fn2.disabled=true;fn3.disabled=true;fn4.disabled=true;
+fn1.style.opacity='.4';fn2.style.opacity='.4';fn4.style.opacity='.4';
+fn3.style.border='2px solid #2e7d32';fn3.style.background='#f0fff4';
+var cf=document.getElementById('cancionFinal');cf.play().catch(function(){});
+setTimeout(function(){var ns=document.getElementById('finalNumSection');
+ns.style.transition='opacity .5s,transform .5s';ns.style.opacity='0';
+ns.style.transform='translateY(-20px)';},2500);
+setTimeout(function(){document.getElementById('finalNumSection').hidden=true;
+var fs=document.getElementById('finalSection');fs.hidden=false;
+fs.style.animation='la .8s ease-out both';
+document.getElementById('finalLetter').textContent=C.mf;
+document.getElementById('finalSignature').textContent=C.r;
+conf();hBurst();},3200);});
+if(ya||adm)qS.hidden=false;
+</script>
+</body>
+</html>
+
