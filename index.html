@@ -165,6 +165,7 @@
 </head>
 <body>
 
+<!-- Audio para Carta 1 -->
 <audio id="audioPlayer" preload="auto" loop>
   <source src="cancion.mp3.mp3" type="audio/mpeg">
 </audio>
@@ -207,14 +208,70 @@
   <span class="quiz-emoji">🔐</span>
   <h2>Una última cosa...</h2>
   <p class="quiz-question">¿Cuál es la comida favorita de Paolo?</p>
-  <button class="quiz-option" id="quizBtn">🍗 Ají de gallina</button>
+  <button class="quiz-option" id="quizOpt1">🥩 Lomo saltado</button>
+  <button class="quiz-option" id="quizOpt2">🍗 Ají de gallina</button>
+  <button class="quiz-option" id="quizOpt3" hidden>🍗👩‍🍳 Ají de gallina de mi mami</button>
   <div class="quiz-alert" id="quizAlert" hidden></div>
+</section>
+
+<!-- NÚMERO SECRETO -->
+<section class="quiz-section" id="numberSection" hidden>
+  <span class="quiz-emoji">🔢</span>
+  <h2>Casi lo logras...</h2>
+  <p class="quiz-question">Pon mi número favorito para desbloquear 💖</p>
+  <input type="number" id="numberInput" placeholder="Escribe el número..." style="
+    display:block;width:100%;padding:1rem;margin:0.8rem 0;
+    border:2px solid var(--pink-pale);border-radius:12px;
+    font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;
+    color:var(--pink-dark);background:#fff;outline:none;
+    transition:border-color 0.3s;
+  ">
+  <button class="quiz-option" id="numberBtn" style="
+    background:linear-gradient(135deg,var(--pink),var(--pink-dark));
+    color:#fff;border:none;margin-top:0.5rem;font-weight:600;
+  ">Desbloquear 💖</button>
+  <div class="quiz-alert" id="numberAlert" hidden></div>
 </section>
 
 <!-- MENSAJE FINAL -->
 <section class="final-section" id="finalSection" hidden>
   <h2>Feliz aniversario</h2>
   <div class="final-letter" id="finalLetter"></div>
+
+  <!-- FOTO FINAL -->
+  <div style="margin:2rem auto;max-width:320px;">
+    <img src="https://i.imgur.com/lGKQQIZ.jpeg" alt="Nosotros" style="
+      width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);
+      box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+    ">
+  </div>
+
+  <!-- VIDEO PRIMEROS BESOS -->
+  <div style="margin:2rem auto;max-width:360px;">
+    <p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,0.9);margin-bottom:0.8rem;">Cuando nos dimos nuestros primeros besos 💋</p>
+    <video controls playsinline style="
+      width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);
+      box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+    ">
+      <source src="https://i.imgur.com/wxJVe6n.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- =============================================
+       🎵 NUESTRA PRIMERA CANCIÓN
+       👉 PAOLO: Aquí va tu archivo cancion1.mp3
+       👉 Asegúrate de que esté subido en tu repositorio
+       ============================================= -->
+  <div style="margin:2rem auto;text-align:center;">
+    <p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,0.9);margin-bottom:0.8rem;">🎵 Nuestra primera canción 🎵</p>
+    <audio id="cancionFinal" controls loop style="
+      width:80%;max-width:300px;border-radius:30px;
+    ">
+      <!-- 👇👇👇 AQUÍ VA TU CANCIÓN — el archivo cancion1.mp3 👇👇👇 -->
+      <source src="cancion1.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
   <span class="signature-name" id="finalSignature"></span>
 </section>
 
@@ -326,7 +383,7 @@ var CONFIG = {
   recuerdos:[]
 };
 
-/* Audio */
+/* Audio Carta 1 */
 var audioPlayer=document.getElementById('audioPlayer');
 function playMusic(){audioPlayer.currentTime=0;audioPlayer.play().catch(function(){});}
 function stopMusic(){audioPlayer.pause();audioPlayer.currentTime=0;}
@@ -557,35 +614,88 @@ if(CONFIG.recuerdos.length===0){
 }
 
 /* QUIZ MINI JUEGO */
-var quizClicks=0;
 var quizAlert=document.getElementById('quizAlert');
 var quizSection=document.getElementById('quizSection');
-var quizBtn=document.getElementById('quizBtn');
+var quizOpt1=document.getElementById('quizOpt1');
+var quizOpt2=document.getElementById('quizOpt2');
+var quizOpt3=document.getElementById('quizOpt3');
+var ajiClicks=0;
 
-quizBtn.addEventListener('click',function(){
-  quizClicks++;
+quizOpt1.addEventListener('click',function(){
   quizAlert.hidden=false;
+  quizAlert.className='quiz-alert wrong';
+  quizAlert.textContent='❌ Jajaja no, incorrecto. ¡Intenta de nuevo! 😅';
+});
 
-  if(quizClicks===1){
+quizOpt2.addEventListener('click',function(){
+  ajiClicks++;
+  quizAlert.hidden=false;
+  if(ajiClicks===1){
     quizAlert.className='quiz-alert wrong';
-    quizAlert.textContent='❌ Incorrecto... ¡Es ají de gallina de mi mami! 😤';
+    quizAlert.textContent='❌ Incorrecto... hmm, ¿segura? 🤔';
   }
-  else if(quizClicks===2){
+  else if(ajiClicks>=2){
     quizAlert.className='quiz-alert wrong';
-    quizAlert.textContent='❌ Sigues sin acertar... 🤔 (o quizás sí, no sé jaja)';
+    quizAlert.textContent='❌ Sigue sin ser... ¡pero mira, apareció otra opción! 👀';
+    quizOpt3.hidden=false;
+    quizOpt3.style.animation='layerAppear 0.5s ease-out both';
   }
-  else if(quizClicks>=3){
+});
+
+var mamiClicks=0;
+quizOpt3.addEventListener('click',function(){
+  mamiClicks++;
+  quizAlert.hidden=false;
+  if(mamiClicks===1){
+    quizAlert.className='quiz-alert wrong';
+    quizAlert.textContent='❌ Incorrecto también... ¿o sí? 🤨';
+  }
+  else if(mamiClicks>=2){
     quizAlert.className='quiz-alert success';
-    quizAlert.textContent='✅ No mentira, ¡sí está bien! 😂💖 Aquí va tu sorpresa...';
+    quizAlert.textContent='✅ No mentira, ¡sí está bien! 😂💖 Ahora una cosa más...';
+    quizOpt1.disabled=true;quizOpt2.disabled=true;quizOpt3.disabled=true;
+    quizOpt1.style.opacity='0.4';quizOpt2.style.opacity='0.4';quizOpt3.style.opacity='0.4';
 
     setTimeout(function(){
       quizSection.style.transition='opacity 0.5s, transform 0.5s';
       quizSection.style.opacity='0';
       quizSection.style.transform='translateY(-20px)';
-    },1500);
+    },1800);
 
     setTimeout(function(){
       quizSection.hidden=true;
+      document.getElementById('numberSection').hidden=false;
+      document.getElementById('numberSection').style.animation='layerAppear 0.6s ease-out both';
+      document.getElementById('numberInput').focus();
+    },2500);
+  }
+});
+
+/* NÚMERO SECRETO */
+var numberSection=document.getElementById('numberSection');
+var numberInput=document.getElementById('numberInput');
+var numberBtn=document.getElementById('numberBtn');
+var numberAlert=document.getElementById('numberAlert');
+
+numberBtn.addEventListener('click',checkNumber);
+numberInput.addEventListener('keydown',function(e){if(e.key==='Enter')checkNumber();});
+
+function checkNumber(){
+  var val=numberInput.value.trim();
+  numberAlert.hidden=false;
+  if(val==='7'){
+    numberAlert.className='quiz-alert success';
+    numberAlert.textContent='✅ ¡Correcto! 💖 Aquí va tu sorpresa...';
+    numberBtn.disabled=true;numberInput.disabled=true;
+
+    setTimeout(function(){
+      numberSection.style.transition='opacity 0.5s, transform 0.5s';
+      numberSection.style.opacity='0';
+      numberSection.style.transform='translateY(-20px)';
+    },1500);
+
+    setTimeout(function(){
+      numberSection.hidden=true;
       document.getElementById('finalSection').hidden=false;
       document.getElementById('finalSection').style.animation='layerAppear 0.8s ease-out both';
       document.getElementById('finalLetter').textContent=CONFIG.mensajeFinal;
@@ -593,8 +703,12 @@ quizBtn.addEventListener('click',function(){
       launchConfetti();
       createHeartBurst();
     },2200);
+  } else {
+    numberAlert.className='quiz-alert wrong';
+    numberAlert.textContent='❌ Ese no es... ¡piénsalo bien! 😏';
+    numberInput.value='';numberInput.focus();
   }
-});
+}
 
 /* Mostrar quiz si ya llegó el día o modo admin */
 if(yaLlegoElDia||modoAdmin){
