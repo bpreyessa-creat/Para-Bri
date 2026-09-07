@@ -204,7 +204,7 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <button class="sbtn" id="splashBtn">Abrir mi regalo 💖</button>
 </div>
 <div class="mpage" id="mainPage">
-<audio id="audioPlayer" preload="auto" loop><source src="cancion2.mp3" type="audio/mpeg"></audio>
+<audio id="audioPlayer" preload="auto" loop><source src="cancion.mp3.mp3" type="audio/mpeg"></audio>
 <div class="ab" id="adminBanner" hidden>🔧 MODO PREVISUALIZACION — Solo tu ves esto, Paolo.</div>
 <div class="fh" aria-hidden="true">
 <span style="left:8%;animation-duration:16s;--drift:20px;">♥</span>
@@ -229,7 +229,7 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <div id="momentsContent" style="display:none;margin-top:1.5rem;animation:la .6s ease-out both">
 <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#7A5A63;max-width:60ch;margin:0 auto 2rem;line-height:1.8">Contigo cada momento se convierte en un recuerdo que quiero guardar para siempre. Sabes que a mi me gusta mucho reirme y contigo somos mucho amor, pero tambien peleas y risas, caras raras y momentos que no cambiaria por nada. Dale play y recuerda conmigo.</p>
 <audio id="bgMusic" preload="auto" loop>
-<source src="cancion.mp3.mp3" type="audio/mpeg">
+<source src="cancion2.mp3" type="audio/mpeg">
 </audio>
 <div style="margin-bottom:1.5rem">
 <button id="bgMusicBtn" style="padding:.7rem 1.8rem;background:linear-gradient(135deg,#E0457B,#C42D63);color:#fff;border:none;border-radius:25px;font-family:'Caveat',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 15px -5px rgba(224,69,123,.4);transition:transform .2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">&#x1F3B5; Reproducir musica de fondo</button>
@@ -584,19 +584,25 @@ var bgMusic=document.getElementById('bgMusic');
 var bgMusicBtn=document.getElementById('bgMusicBtn');
 var bgPlaying=false;
 var momOpen=false;
+var momSection=momToggle.closest('section');
+
 momToggle.addEventListener('click',function(){
 momOpen=!momOpen;
 if(momOpen){
 momContent.style.display='block';
 momContent.style.animation='la .6s ease-out both';
 momArrow.style.transform='rotate(180deg)';
+bgMusic.play().catch(function(){});
+bgPlaying=true;
+bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';
 }else{
 momContent.style.display='none';
 momArrow.style.transform='rotate(0deg)';
-if(bgPlaying){bgMusic.pause();bgPlaying=false;
-bgMusicBtn.innerHTML='\u{1F3B5} Reproducir musica de fondo';}
+bgMusic.pause();bgPlaying=false;
+bgMusicBtn.innerHTML='\u{1F3B5} Reproducir musica de fondo';
 }
 });
+
 bgMusicBtn.addEventListener('click',function(e){
 e.stopPropagation();
 if(bgPlaying){
@@ -607,6 +613,7 @@ bgMusic.play().catch(function(){});bgPlaying=true;
 bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';
 }
 });
+
 var momVids=document.querySelectorAll('.momVid');
 momVids.forEach(function(vid){
 vid.addEventListener('play',function(){
@@ -628,6 +635,22 @@ if(bgPlaying){bgMusic.play().catch(function(){});
 bgMusicBtn.innerHTML='\u23F8 Pausar musica de fondo';}
 });
 });
+
+/* AUTO-PAUSE: detectar cuando sales de la seccion */
+var momObs=new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(!entry.isIntersecting&&momOpen){
+if(!bgMusic.paused){bgMusic.pause();}
+momVids.forEach(function(v){if(!v.paused)v.pause();});
+}
+if(entry.isIntersecting&&momOpen&&bgPlaying){
+var anyVidPlaying=false;
+momVids.forEach(function(v){if(!v.paused)anyVidPlaying=true;});
+if(!anyVidPlaying){bgMusic.play().catch(function(){});}
+}
+});
+},{threshold:0.1});
+momObs.observe(momSection);
 if(ya||adm)qS.hidden=false;
 </script>
 </body>
