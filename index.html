@@ -34,7 +34,7 @@ p{margin:0 0 1em}button{font-family:inherit;cursor:pointer}
 .scd.today{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--pk);background:none;border:none}
 .sbtn{margin-top:1.5rem;padding:1rem 2.5rem;background:linear-gradient(135deg,var(--pk),var(--pkd));color:#fff;border:none;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px -5px rgba(224,69,123,.4);opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
 .sbtn.show{opacity:1;transform:translateY(0)}.sbtn:hover{transform:translateY(-2px)}
-.mp{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.mp.vis{opacity:1;transform:translateY(0)}
+.mpage{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.mpage.vis{opacity:1;transform:translateY(0)}
 .ab{position:fixed;top:0;left:0;right:0;background:var(--pkd);color:#fff;text-align:center;padding:6px 12px;font-size:.8rem;z-index:100}.ab[hidden]{display:none}
 .fh{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
 .fh span{position:absolute;bottom:-40px;font-size:1.1rem;color:var(--pks);opacity:.35}
@@ -62,10 +62,25 @@ header.hero{text-align:center;padding-top:4.5rem}
 .envb .ms{position:absolute;top:50%;left:50%;transform:translate(-50%,-46%);width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pkd));box-shadow:0 2px 8px rgba(224,69,123,.3)}
 .envb.lk .ms{background:var(--g3);box-shadow:none}
 .lc{margin-top:.6rem;font-size:.85rem;color:var(--g5)}.li.lk .lc{font-style:italic;opacity:.55}
-.sd{text-align:center;margin:0 auto;color:var(--pkp);font-size:1.2rem;letter-spacing:8px;padding:.5rem 0}
-.tl{position:relative;margin-top:3rem;padding-left:1.4rem;border-left:2px dashed var(--pkp)}
-.mem{position:relative;padding:0 0 3rem 2.2rem;max-width:640px}.mem:last-child{padding-bottom:0}
-.mem::before{content:"";position:absolute;left:-1.55rem;top:.4rem;width:12px;height:12px;border-radius:50%;background:var(--pk);box-shadow:0 0 0 4px var(--bg),0 0 10px rgba(224,69,123,.25)}
+.li.principal{width:160px;transform:scale(1.1);z-index:5}
+.li.principal .envb.ul{background:linear-gradient(145deg,#fff,#fff5f8);border:2px solid var(--pk);box-shadow:0 0 20px rgba(224,69,123,.3),0 0 40px rgba(224,69,123,.15)}
+.li.principal .envb.ul::before{border-top-color:var(--pkd)}
+.li.principal .envb.ul:hover{transform:translateY(-6px) rotate(-2deg);box-shadow:0 0 30px rgba(224,69,123,.4),0 0 60px rgba(224,69,123,.2)}
+.li.principal .ms{width:26px;height:26px;box-shadow:0 0 12px rgba(224,69,123,.5)}
+.li.principal .clip{width:14px;height:22px}
+.li.principal .lc{font-weight:700;color:var(--pk);font-size:.95rem}
+.li.principal .tag{display:inline-block;margin-top:.4rem;padding:.2rem .8rem;background:linear-gradient(135deg,var(--pk),var(--pkd));color:#fff;font-family:'Caveat',cursive;font-size:.85rem;border-radius:20px;animation:tagPulse 2s ease-in-out infinite}
+@keyframes tagPulse{0%,100%{transform:scale(1);box-shadow:0 2px 8px rgba(224,69,123,.3)}50%{transform:scale(1.05);box-shadow:0 4px 16px rgba(224,69,123,.5)}}
+.li.principal .sparkles{position:absolute;top:-8px;left:-8px;right:-8px;bottom:-8px;pointer-events:none;overflow:visible}
+.li.principal .sparkles span{position:absolute;font-size:.7rem;animation:sparkle 2s ease-in-out infinite}
+.li.principal .sparkles span:nth-child(1){top:-5px;left:10%;animation-delay:0s}
+.li.principal .sparkles span:nth-child(2){top:5px;right:-5px;animation-delay:.4s}
+.li.principal .sparkles span:nth-child(3){bottom:15px;left:-5px;animation-delay:.8s}
+.li.principal .sparkles span:nth-child(4){top:30%;right:5%;animation-delay:1.2s}
+.li.principal .sparkles span:nth-child(5){bottom:5px;right:15%;animation-delay:1.6s}
+@keyframes sparkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
+.li.principal .glow-ring{position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:10px;border:2px solid transparent;background:linear-gradient(135deg,rgba(224,69,123,.2),rgba(240,98,146,.1)) border-box;pointer-events:none;animation:glowPulse 3s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}}
 .qs{text-align:center;max-width:500px;margin:2rem auto;padding:3rem 1.8rem;background:#fffaf5;border-radius:14px;border:2px solid var(--pkp);box-shadow:var(--sm);position:relative;z-index:2}
 .qs[hidden]{display:none}.qs h2{margin-bottom:.5rem}
 .qq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--g6);margin:1rem 0 1.5rem}
@@ -118,32 +133,6 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 .cc{position:fixed;inset:0;pointer-events:none;z-index:80}
 .cp{position:absolute;top:-20px;width:10px;height:10px;animation:cf linear forwards}
 @keyframes cf{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-  
-/* SPLASH SCREEN */
-.splash{position:fixed;inset:0;z-index:200;background:#FFF5F7;background-image:radial-gradient(circle at 50% 50%,rgba(224,69,123,0.08),transparent 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s,transform 0.8s;}
-.splash.hide{opacity:0;transform:scale(1.05);pointer-events:none;}
-.splash[hidden]{display:none;}
-.splash-env{width:220px;aspect-ratio:3/2;position:relative;cursor:pointer;animation:sFloat 3s ease-in-out infinite;}
-@keyframes sFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-.splash-env .sb{position:absolute;inset:0;background:linear-gradient(145deg,#fff,#FFF0F3);border:2px solid #F8BBD0;border-radius:10px;box-shadow:0 20px 50px -10px rgba(224,69,123,0.25);}
-.splash-env .sf{position:absolute;top:0;left:0;right:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:75px solid #F8BBD0;}
-.splash-env .ss{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#E0457B,#C42D63);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(224,69,123,0.4);z-index:2;transition:transform 0.3s;}
-.splash-env:hover .ss{transform:translate(-50%,-50%) scale(1.15);}
-.splash-title{font-family:'Cormorant Garamond',serif;font-weight:600;color:#E0457B;font-size:clamp(1.8rem,5vw,2.8rem);margin-top:2rem;opacity:0;animation:sFadeIn 1s 0.5s ease-out forwards;}
-@keyframes sFadeIn{to{opacity:1;}}
-.splash-hint{font-family:'Caveat',cursive;font-size:1.1rem;color:#A3808A;margin-top:0.8rem;opacity:0;animation:sFadeIn 1s 1.5s ease-out forwards;}
-.splash-cd{margin-top:2rem;display:inline-flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;padding:1.2rem 1.6rem;background:rgba(255,255,255,0.8);border:1px solid #F8BBD0;border-radius:12px;opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
-.splash-cd.show{opacity:1;transform:translateY(0);}
-.splash-cd .unit{text-align:center;min-width:50px;}
-.splash-cd .num{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.8rem;color:#E0457B;}
-.splash-cd .label{font-size:0.75rem;color:#7A5A63;}
-.splash-cd.today{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#E0457B;background:none;border:none;}
-.splash-btn{margin-top:1.5rem;padding:1rem 2.5rem;background:linear-gradient(135deg,#E0457B,#C42D63);color:#fff;border:none;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px -5px rgba(224,69,123,0.4);opacity:0;transform:translateY(10px);transition:opacity 0.5s,transform 0.5s;}
-.splash-btn.show{opacity:1;transform:translateY(0);}
-.splash-btn:hover{transform:translateY(-2px);}
-.main-page{opacity:0;transform:translateY(30px);transition:opacity 0.8s,transform 0.8s;}
-.main-page.visible{opacity:1;transform:translateY(0);}
-@media(max-width:560px){.splash-env{width:180px;}.splash-env .sf{border-left:90px solid transparent;border-right:90px solid transparent;border-top:60px solid #F8BBD0;}}
 @media(max-width:560px){section,header.hero,footer.so{padding:3.5rem 1.2rem}.ea{width:220px;height:150px}.eai{border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:75px solid var(--pkb)}.eaf{border-left:110px solid transparent;border-right:110px solid transparent;border-top:80px solid var(--pkp)}.lp{left:15px;right:15px;height:125px}.lca{padding:1.6rem 1.2rem}.qs{margin:1rem;padding:2rem 1.2rem}.senv{width:180px}.senv .sfl{border-left:90px solid transparent;border-right:90px solid transparent;border-top:60px solid var(--pkp)}}
 </style></head><body>
 <div class="splash" id="splash">
@@ -153,9 +142,9 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <div class="scd" id="splashCd"></div>
 <button class="sbtn" id="splashBtn">Abrir mi regalo 💖</button>
 </div>
-<div class="mp" id="mainPage">
+<div class="mpage" id="mainPage">
 <audio id="audioPlayer" preload="auto" loop><source src="cancion.mp3.mp3" type="audio/mpeg"></audio>
-<div class="ab" id="adminBanner" hidden>🔧 MODO PREVISUALIZACION — Solo tú ves esto, Paolo.</div>
+<div class="ab" id="adminBanner" hidden>🔧 MODO PREVISUALIZACION — Solo tu ves esto, Paolo.</div>
 <div class="fh" aria-hidden="true">
 <span style="left:8%;animation-duration:16s;--drift:20px;">♥</span>
 <span style="left:22%;animation-duration:21s;animation-delay:3s;--drift:-15px;font-size:.8rem;">♥</span>
@@ -170,29 +159,28 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <div class="cd" id="countdown"></div>
 </header>
 <section class="cls">
-<h2>Un mensaje para cada día</h2>
-<p class="si" style="margin-left:auto;margin-right:auto;">Cada sobre se abre solo cuando llega su día. Los que ya pasaron, puedes volver a abrirlos cuando quieras.</p>
+<h2>Un mensaje para cada dia</h2>
+<p class="si" style="margin-left:auto;margin-right:auto;">Cada sobre se abre solo cuando llega su dia. Los que ya pasaron, puedes volver a abrirlos cuando quieras.</p>
 <div class="cl" id="clothesline"></div>
 </section>
-
 <section class="qs" id="quizSection" hidden>
-<span class="qe">🔐</span><h2>Una última cosa...</h2>
-<p class="qq">¿Cuál es la comida favorita de Paolo?</p>
+<span class="qe">🔐</span><h2>Una ultima cosa...</h2>
+<p class="qq">Cual es la comida favorita de Paolo?</p>
 <button class="qo" id="quizOpt1">🥩 Lomo saltado</button>
-<button class="qo" id="quizOpt2">🍗 Ají de gallina</button>
-<button class="qo" id="quizOpt3" style="display:none">🍗👩‍🍳 Ají de gallina de mi mami</button>
+<button class="qo" id="quizOpt2">🍗 Aji de gallina</button>
+<button class="qo" id="quizOpt3" style="display:none">🍗👩‍🍳 Aji de gallina de mi mami</button>
 <div class="qa" id="quizAlert" hidden></div>
 </section>
 <section class="qs" id="numberSection" hidden>
 <span class="qe">🔢</span><h2>Casi lo logras...</h2>
-<p class="qq">Pon mi número favorito para desbloquear 💖</p>
-<input type="number" id="numberInput" placeholder="Escribe el número..." style="display:block;width:100%;padding:1rem;margin:.8rem 0;border:2px solid var(--pkp);border-radius:12px;font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;color:var(--pkd);background:#fff;outline:none">
+<p class="qq">Pon mi numero favorito para desbloquear 💖</p>
+<input type="number" id="numberInput" placeholder="Escribe el numero..." style="display:block;width:100%;padding:1rem;margin:.8rem 0;border:2px solid var(--pkp);border-radius:12px;font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;color:var(--pkd);background:#fff;outline:none">
 <button class="qo" id="numberBtn" style="background:linear-gradient(135deg,var(--pk),var(--pkd));color:#fff;border:none;font-weight:600">Desbloquear 💖</button>
 <div class="qa" id="numberAlert" hidden></div>
-</section>  
+</section>
 <section class="qs" id="finalNumSection" hidden>
-<span class="qe">💕</span><h2>¡Última pregunta!</h2>
-<p class="qq">¿Cuántos meses cumplimos hoy? 🥺</p>
+<span class="qe">💕</span><h2>Ultima pregunta!</h2>
+<p class="qq">Cuantos meses cumplimos hoy? 🥺</p>
 <button class="qo" id="fnOpt1">6 meses 💑</button>
 <button class="qo" id="fnOpt2">7 meses 💗</button>
 <button class="qo" id="fnOpt3">8 meses 💖</button>
@@ -208,7 +196,7 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <video controls playsinline style="width:100%;border-radius:12px;border:4px solid rgba(255,255,255,.5);box-shadow:0 10px 30px -10px rgba(0,0,0,.3)"><source src="https://i.imgur.com/wxJVe6n.mp4" type="video/mp4"></video>
 </div>
 <div style="margin:2rem auto;text-align:center">
-<p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,.9);margin-bottom:.8rem">🎵 Nuestra primera canción 🎵</p>
+<p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,.9);margin-bottom:.8rem">🎵 Nuestra primera cancion 🎵</p>
 <audio id="cancionFinal" controls loop style="width:80%;max-width:300px;border-radius:30px"><source src="cancion1.mp3" type="audio/mpeg"></audio>
 </div>
 <span class="sig" id="finalSignature"></span>
@@ -222,15 +210,15 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 
 <script>
 var C={n:"Brigith",r:"Paolo",fa:"2026-09-08",
-fh:"Siete días, siete cartas, y todo lo que siento por ti.",
-mf:"Hoy es un día especial para nosotros, y quería que lo supieras escrito, no solo dicho.\n\nGracias por cada día ordinario que hiciste extraordinario, por quedarte en los días difíciles y por reírte conmigo en los buenos.\n\nEsta página tiene solo una fracción de todo lo que siento. Feliz aniversario, mi amor. Vamos por muchos más.",
+fh:"Siete dias, siete cartas, y todo lo que siento por ti.",
+mf:"Hoy es un dia especial para nosotros, y queria que lo supieras escrito, no solo dicho.\n\nGracias por cada dia ordinario que hiciste extraordinario, por quedarte en los dias dificiles y por reirte conmigo en los buenos.\n\nEsta pagina tiene solo una fraccion de todo lo que siento. Feliz aniversario, mi amor. Vamos por muchos mas.",
 cartas:[
-{fecha:"2026-09-08",titulo:"Feliz aniversario, mi amor 💕",efecto:"typewriter",musica:true,capas:[
-{emoji:"💌",titulo:"Tienes una carta...",texto:"Hoy es un día especial. Alguien quiso escribirte algo desde el corazón. ¿Estás lista para leerlo?",boton:"Abrir carta 💖"},
-{emoji:"🥺",titulo:"Antes de leer...",texto:"Quiero que sepas que cada palabra aquí la escribí pensando en ti, en nosotros, en todo lo que hemos vivido juntos. Nada de esto existiría sin ti.",boton:"Seguir leyendo ✨"},
-{emoji:"💖",titulo:"Feliz aniversario, mi amor",texto:"Brigith, hoy es nuestro día. El día que mi vida cambió por completo. Desde aquel momento, cada día a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos más. Te adoro mi princesita hermosa Bri Blanquita Yllarita 💖",boton:"Ver nuestras fotos 📸",final:true,iniciar:true},
-{tipo:"gal",titulo:"Nuestros momentos 📸",fotos:[
-{s:"https://i.imgur.com/r88VvUD.jpeg",c:"Nuestros momentos 💕"},
+{fecha:"2026-09-08",titulo:"Feliz aniversario, mi amor",efecto:"typewriter",musica:true,capas:[
+{emoji:"\u{1F48C}",titulo:"Tienes una carta...",texto:"Hoy es un dia especial. Alguien quiso escribirte algo desde el corazon. Estas lista para leerlo?",boton:"Abrir carta \u{1F496}"},
+{emoji:"\u{1F979}",titulo:"Antes de leer...",texto:"Quiero que sepas que cada palabra aqui la escribi pensando en ti, en nosotros, en todo lo que hemos vivido juntos. Nada de esto existiria sin ti.",boton:"Seguir leyendo \u2728"},
+{emoji:"\u{1F496}",titulo:"Feliz aniversario, mi amor",texto:"Brigith, hoy es nuestro dia. El dia que mi vida cambio por completo. Desde aquel momento, cada dia a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos mas. Te adoro mi princesita hermosa Bri Blanquita Yllarita \u{1F496}",boton:"Ver nuestras fotos \u{1F4F8}",final:true,iniciar:true},
+{tipo:"gal",titulo:"Nuestros momentos \u{1F4F8}",fotos:[
+{s:"https://i.imgur.com/r88VvUD.jpeg",c:"Nuestros momentos \u{1F495}"},
 {s:"https://i.imgur.com/mXeOtos.jpeg",c:""},{s:"https://i.imgur.com/Ntwkfdt.jpeg",c:""},
 {s:"https://i.imgur.com/k24tj0M.jpeg",c:""},{s:"https://i.imgur.com/lz8DP28.jpeg",c:""},
 {s:"https://i.imgur.com/QZZoWQ1.jpeg",c:""},{s:"https://i.imgur.com/orVdbmi.jpeg",c:""},
@@ -242,25 +230,20 @@ cartas:[
 {s:"https://i.imgur.com/KpioTZm.jpeg",c:""},{s:"https://i.imgur.com/TkL5J3h.jpeg",c:""},
 {s:"https://i.imgur.com/FSQaAYO.jpeg",c:""}]}
 ]},
-{fecha:"2026-09-09",titulo:"Lo que más amo de ti 🌹",efecto:"",capas:[
-{emoji:"🌹",titulo:"Lo que más amo de ti",texto:"¿Sabes qué es lo que más amo de ti? Tu mente, tu forma de pensar, cómo siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razón. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mí y me apoyas en todo. Tú no solo eres mi novia, eres la persona más sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. 🌹",boton:"Ver foto 📸"},
-{tipo:"gal",titulo:"Mi persona favorita 🌹",fotos:[{s:"https://i.imgur.com/rKwSxCs.jpeg",c:"Te amo 💕"}]}
+{fecha:"2026-09-09",titulo:"Lo que mas amo de ti",efecto:"",capas:[
+{emoji:"\u{1F339}",titulo:"Lo que mas amo de ti",texto:"Sabes que es lo que mas amo de ti? Tu mente, tu forma de pensar, como siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razon. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mi y me apoyas en todo. Tu no solo eres mi novia, eres la persona mas sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. \u{1F339}",boton:"Ver foto \u{1F4F8}"},
+{tipo:"gal",titulo:"Mi persona favorita \u{1F339}",fotos:[{s:"https://i.imgur.com/rKwSxCs.jpeg",c:"Te amo \u{1F495}"}]}
 ]},
-{fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazón 📸",efecto:"",capas:[
-{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸"}
-]},
-{fecha:"2026-09-11",titulo:"Lo que admiro de ti ⭐",efecto:"",capas:[
-{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐"}
-]},
-{fecha:"2026-09-12",titulo:"Mis promesas para ti 🤝",efecto:"",capas:[
-{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝"}
-]},
-{fecha:"2026-09-13",titulo:"Nuestros momentos 😄",efecto:"",capas:[
-{emoji:"😄",titulo:"Nuestros momentos",texto:"¿Te acuerdas de todas esas veces que nos reímos hasta que nos dolió el estómago? ¿De las conversaciones largas que no queríamos terminar? ¿De los silencios cómodos donde no hacía falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo más simple se vuelve especial. 😄"}
-]},
-{fecha:"2026-09-14",titulo:"Para siempre 💖",efecto:"",capas:[
-{emoji:"💖",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mí. Pero la verdad es que ninguna palabra es suficiente. Tú eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tú. Te amo hoy, mañana y siempre. Este es solo un aniversario más de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. 💖"}
-]}
+{fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazon",efecto:"",capas:[
+{emoji:"\u{1F4F8}",titulo:"Un recuerdo que guardo en el corazon",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que queria estar. No necesite mas senales, solo basto verte, sentirte cerca, y saber que contigo todo tenia sentido. Ese recuerdo lo guardo como un tesoro. \u{1F4F8}"}]},
+{fecha:"2026-09-11",titulo:"Lo que admiro de ti",efecto:"",capas:[
+{emoji:"\u2B50",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuanto te admiro. Admiro tu valentia para enfrentar cada dia, tu dedicacion, tu forma de cuidar a quienes amas. Eres una mujer increible, fuerte y llena de luz. El mundo es mejor porque tu estas en el, y mi mundo es mejor porque tu estas conmigo. \u2B50"}]},
+{fecha:"2026-09-12",titulo:"Mis promesas para ti",efecto:"",capas:[
+{emoji:"\u{1F91D}",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahi cuando me necesites, en los dias buenos y en los dificiles. Te prometo esforzarme cada dia por hacerte feliz. Te prometo que vamos a cumplir cada sueno que hemos imaginado juntos. Esto apenas comienza, mi amor. \u{1F91D}"}]},
+{fecha:"2026-09-13",titulo:"Nuestros momentos",efecto:"",capas:[
+{emoji:"\u{1F604}",titulo:"Nuestros momentos",texto:"Te acuerdas de todas esas veces que nos reimos hasta que nos dolio el estomago? De las conversaciones largas que no queriamos terminar? De los silencios comodos donde no hacia falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo mas simple se vuelve especial. \u{1F604}"}]},
+{fecha:"2026-09-14",titulo:"Para siempre",efecto:"",capas:[
+{emoji:"\u{1F496}",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mi. Pero la verdad es que ninguna palabra es suficiente. Tu eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tu. Te amo hoy, manana y siempre. Este es solo un aniversario mas de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. \u{1F496}"}]}
 ]};
 var au=document.getElementById('audioPlayer');
 function pm(){au.currentTime=0;au.play().catch(function(){});}
@@ -280,41 +263,36 @@ document.getElementById('footerSignature').textContent=C.r;
 var spl=document.getElementById('splash'),sEnv=document.getElementById('splashEnv');
 var sCd=document.getElementById('splashCd'),sBtn=document.getElementById('splashBtn');
 var sHint=document.getElementById('splashHint'),sS=false,sT=null;
-
 sEnv.addEventListener('click',function(){
 if(sS)return;sS=true;sCd.classList.add('show');
 if(ya||adm){
-sHint.textContent='¡Hoy es el día! 💖';
-sCd.classList.add('today');sCd.textContent=ya?'¡Tu sorpresa está lista! 🎁':'🔧 Vista previa';
+sHint.textContent='\u{1F496} Hoy es el dia!';
+sCd.classList.add('today');sCd.textContent=ya?'Tu sorpresa esta lista! \u{1F381}':'\u{1F527} Vista previa';
 setTimeout(function(){sBtn.classList.add('show');},500);
 }else{
 sHint.textContent='';
 function updSplash(){
 var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
 if(df<=0){clearInterval(sT);
-sHint.textContent='¡Hoy es el día! 💖';
-sCd.classList.add('today');sCd.textContent='¡Tu sorpresa está lista! 🎁';
+sHint.textContent='\u{1F496} Hoy es el dia!';
+sCd.classList.add('today');sCd.textContent='Tu sorpresa esta lista! \u{1F381}';
 sBtn.classList.add('show');return;}
 var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
 var txt='Faltan ';
-if(d>0)txt+=d+(d===1?' día, ':' días, ');
+if(d>0)txt+=d+(d===1?' dia, ':' dias, ');
 txt+=h+'h '+m+'m '+sc+'s';
-sHint.innerHTML='⏳ '+txt+' para abrir tu sorpresa 🎁';
-sCd.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
+sHint.innerHTML='\u23F3 '+txt+' para abrir tu sorpresa \u{1F381}';
+sCd.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">dias</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
 updSplash();sT=setInterval(updSplash,1000);
-if(adm){setTimeout(function(){sBtn.classList.add('show');sBtn.textContent='🔧 Entrar (admin)';},500);}
+if(adm){setTimeout(function(){sBtn.classList.add('show');sBtn.textContent='\u{1F527} Entrar (admin)';},500);}
 }});
-function rSCd(){var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
-if(df<=0){clearInterval(sT);sCd.classList.add('today');sCd.textContent='¡Hoy es nuestro día! 💕';sBtn.classList.add('show');return;}
-var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
-sCd.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
 sBtn.addEventListener('click',function(){if(sT)clearInterval(sT);spl.classList.add('hide');
 setTimeout(function(){spl.hidden=true;document.getElementById('mainPage').classList.add('vis');},800);});
 var cdEl=document.getElementById('countdown');
 function rCd(){var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
-if(df<=0||adm){cdEl.classList.add('tb');cdEl.textContent=df<=0?'Hoy, '+ff(fa):'🔧 Vista previa';return;}
+if(df<=0||adm){cdEl.classList.add('tb');cdEl.textContent=df<=0?'Hoy, '+ff(fa):'\u{1F527} Vista previa';return;}
 var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
-cdEl.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
+cdEl.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">dias</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
 rCd();setInterval(rCd,1e3);
 var clEl=document.getElementById('clothesline');
 var co=[].concat(C.cartas).sort(function(a,b){return pld(a.fecha)-pld(b.fecha);});
@@ -325,10 +303,9 @@ it.className='li '+(ul?'ul':'lk')+(esPrincipal?' principal':'');
 var cl=document.createElement('div');cl.className='clip';it.appendChild(cl);
 if(esPrincipal){
 var sparkles=document.createElement('div');sparkles.className='sparkles';
-sparkles.innerHTML='<span>✨</span><span>⭐</span><span>💫</span><span>✨</span><span>⭐</span>';
+sparkles.innerHTML='<span>\u2728</span><span>\u2B50</span><span>\u{1F4AB}</span><span>\u2728</span><span>\u2B50</span>';
 it.appendChild(sparkles);
-var glow=document.createElement('div');glow.className='glow-ring';
-it.appendChild(glow);}
+var glow=document.createElement('div');glow.className='glow-ring';it.appendChild(glow);}
 var bt=document.createElement('button');bt.className='envb '+(ul?'ul':'lk');
 var se=document.createElement('div');se.className='ms';bt.appendChild(se);
 if(ul)bt.addEventListener('click',(function(c){return function(){seA(c);};})(ct));
@@ -337,9 +314,8 @@ var cp=document.createElement('p');cp.className='lc';
 cp.textContent=ul?fdm(f):'Se abre el '+fdm(f);
 it.appendChild(cp);
 if(esPrincipal){var tag=document.createElement('span');tag.className='tag';
-tag.textContent='💖 Nuestro día';it.appendChild(tag);}
+tag.textContent='\u{1F496} Nuestro dia';it.appendChild(tag);}
 clEl.appendChild(it);});
-
 var eo=document.getElementById('envOverlay'),eF=document.getElementById('eFlap');
 var eS=document.getElementById('eSeal'),lPl=document.getElementById('lPull'),cC=null;
 function seA(ct){cC=ct;eF.classList.remove('open');eS.classList.remove('brk');lPl.classList.remove('out');
@@ -351,7 +327,7 @@ setTimeout(function(){lPl.classList.add('out');},1600);
 setTimeout(function(){hBurst();},2200);
 setTimeout(function(){eo.hidden=true;oL(cC);},2800);}
 function hBurst(){var c=document.createElement('div');c.className='hb';c.style.left='50%';c.style.top='50%';
-document.body.appendChild(c);var h=['💖','💗','💕','🩷','♥','✨','💘','💝'];
+document.body.appendChild(c);var h=['\u{1F496}','\u{1F497}','\u{1F495}','\u{1FA77}','\u2665','\u2728','\u{1F498}','\u{1F49D}'];
 for(var i=0;i<16;i++){var p=document.createElement('span');p.className='hp';p.textContent=h[i%h.length];
 var a=(360/16)*i,d=80+Math.random()*120;
 p.style.setProperty('--tx',Math.cos(a*Math.PI/180)*d+'px');
@@ -360,7 +336,6 @@ p.style.fontSize=(.8+Math.random()*1.2)+'rem';c.appendChild(p);}
 setTimeout(function(){c.remove();},1500);}
 var mO=document.getElementById('modalOverlay'),lC=document.getElementById('layersCont'),twI=null,gI=0;
 function oL(ct){lC.innerHTML='';if(ct.capas&&ct.capas.length>0)sL(ct,0);else sSi(ct);mO.hidden=false;}
-
 function sL(ct,idx){var cp=ct.capas[idx];lC.innerHTML='';if(twI){clearInterval(twI);twI=null;}
 var card=document.createElement('div');card.className='lca';
 var cb=document.createElement('button');cb.className='lcl';cb.textContent='\u2715';
@@ -393,7 +368,7 @@ if(Math.abs(df)>40){if(df>0)gI=Math.min(cp.fotos.length-1,gI+1);
 else gI=Math.max(0,gI-1);uG(tr,ds,cp.fotos.length);}},{passive:true});}
 conf();
 }else{
-var em=document.createElement('span');em.className='le';em.textContent=cp.emoji||'💌';card.appendChild(em);
+var em=document.createElement('span');em.className='le';em.textContent=cp.emoji||'\u{1F48C}';card.appendChild(em);
 var h3=document.createElement('h3');h3.textContent=cp.titulo;card.appendChild(h3);
 var p=document.createElement('p');p.id='lt';
 if(cp.final&&ct.efecto==='typewriter'){card.appendChild(p);setTimeout(function(){twE(p,cp.texto);},300);}
@@ -406,7 +381,7 @@ lC.appendChild(card);}
 function sSi(ct){var card=document.createElement('div');card.className='lca';
 var cb=document.createElement('button');cb.className='lcl';cb.textContent='\u2715';
 cb.addEventListener('click',function(){cM(ct);});card.appendChild(cb);
-var em=document.createElement('span');em.className='le';em.textContent='💌';card.appendChild(em);
+var em=document.createElement('span');em.className='le';em.textContent='\u{1F48C}';card.appendChild(em);
 var h3=document.createElement('h3');h3.textContent=ct.titulo;card.appendChild(h3);
 var p=document.createElement('p');
 if(ct.capas&&ct.capas[0])p.textContent=ct.capas[0].texto;
@@ -435,23 +410,22 @@ function cM(ct){mO.hidden=true;if(twI){clearInterval(twI);twI=null;}
 lC.innerHTML='';if(ct&&ct.musica)sm();}
 mO.addEventListener('click',function(e){if(e.target===mO)cM(cC);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cM(cC);});
+/* QUIZ - COMIDA */
 var qA=document.getElementById('quizAlert'),qS=document.getElementById('quizSection');
 var q1=document.getElementById('quizOpt1'),q2=document.getElementById('quizOpt2'),q3=document.getElementById('quizOpt3');
-var ac=0,mc=0;
-
 q1.addEventListener('click',function(){qA.hidden=false;qA.className='qa w';
-qA.textContent='❌ Jajaja no, incorrecto. ¡Intenta de nuevo! 😅';});
+qA.textContent='\u274C Jajaja no, incorrecto. Intenta de nuevo! \u{1F605}';});
 var ac2=0;
 q2.addEventListener('click',function(){ac2++;qA.hidden=false;
-if(ac2===1){qA.className='qa w';qA.textContent='❌ Incorrecto... hmm, ¿segura? 🤔';}
+if(ac2===1){qA.className='qa w';qA.textContent='\u274C Incorrecto... hmm, segura? \u{1F914}';}
 else if(ac2>=2){qA.className='qa w';
-qA.textContent='❌ Sigue sin ser... ¡pero mira, apareció una nueva opción! 👀';
-q3.style.display='block';q3.style.animation='la .5s ease-out both';
+qA.textContent='\u274C Sigue sin ser... pero mira, aparecio una nueva opcion! \u{1F440}';
+q3.style.display='block';q3.style.animation='la .5s ease-out both';}});
 var mc3=0;
 q3.addEventListener('click',function(){mc3++;qA.hidden=false;
-if(mc3===1){qA.className='qa w';qA.textContent='❌ Incorrecto también... ¿o sí? 🤨';}
+if(mc3===1){qA.className='qa w';qA.textContent='\u274C Incorrecto tambien... o si? \u{1F928}';}
 else if(mc3>=2){qA.className='qa s';
-qA.textContent='✅ No mentira, ¡sí está bien! 😂💖 Ahora una cosa más...';
+qA.textContent='\u2705 No mentira, si esta bien! \u{1F602}\u{1F496} Ahora una cosa mas...';
 q1.disabled=true;q2.disabled=true;q3.disabled=true;
 q1.style.opacity='.4';q2.style.opacity='.4';q3.style.opacity='.4';
 setTimeout(function(){qS.style.transition='opacity .5s,transform .5s';
@@ -460,33 +434,33 @@ setTimeout(function(){qS.hidden=true;
 document.getElementById('numberSection').hidden=false;
 document.getElementById('numberSection').style.animation='la .6s ease-out both';
 document.getElementById('numberInput').focus();},2500);}});
-
+/* NUMERO 7 */
 var nI=document.getElementById('numberInput'),nB=document.getElementById('numberBtn');
 var nA=document.getElementById('numberAlert');
 function chN(){var v=nI.value.trim();nA.hidden=false;
-if(v==='7'){nA.className='qa s';nA.textContent='✅ ¡Correcto! 💖 Pero falta una más...';
+if(v==='7'){nA.className='qa s';nA.textContent='\u2705 Correcto! \u{1F496} Pero falta una mas...';
 nB.disabled=true;nI.disabled=true;
 setTimeout(function(){var ns=document.getElementById('numberSection');
 ns.style.transition='opacity .5s,transform .5s';ns.style.opacity='0';
 ns.style.transform='translateY(-20px)';},1500);
 setTimeout(function(){document.getElementById('numberSection').hidden=true;
-var fs=document.getElementById('finalNumSection');fs.hidden=false;
-fs.style.animation='la .6s ease-out both';
-document.getElementById('finalNumInput').focus();},2200);
-}else{nA.className='qa w';nA.textContent='❌ Ese no es... ¡piénsalo bien! 😏';
+document.getElementById('finalNumSection').hidden=false;
+document.getElementById('finalNumSection').style.animation='la .6s ease-out both';},2200);
+}else{nA.className='qa w';nA.textContent='\u274C Ese no es... piensalo bien! \u{1F60F}';
 nI.value='';nI.focus();}}
 nB.addEventListener('click',chN);
 nI.addEventListener('keydown',function(e){if(e.key==='Enter')chN();});
+/* NUMERO 8 - MESES */
 var fn1=document.getElementById('fnOpt1'),fn2=document.getElementById('fnOpt2');
 var fn3=document.getElementById('fnOpt3'),fn4=document.getElementById('fnOpt4');
 var fnA=document.getElementById('finalNumAlert');
 function fnWrong(txt){fnA.hidden=false;fnA.className='qa w';fnA.textContent=txt;}
-fn1.addEventListener('click',function(){fnWrong('❌ No, todavía no hemos cumplido esos... ¡o ya los pasamos! 😅');});
-fn2.addEventListener('click',function(){fnWrong('❌ Cerquita pero no... ¡piensa bien! 🤔');});
-fn4.addEventListener('click',function(){fnWrong('❌ Aún no llegamos ahí... ¡pero llegaremos! 😏💕');});
+fn1.addEventListener('click',function(){fnWrong('\u274C No, todavia no hemos cumplido esos... o ya los pasamos! \u{1F605}');});
+fn2.addEventListener('click',function(){fnWrong('\u274C Cerquita pero no... piensa bien! \u{1F914}');});
+fn4.addEventListener('click',function(){fnWrong('\u274C Aun no llegamos ahi... pero llegaremos! \u{1F60F}\u{1F495}');});
 fn3.addEventListener('click',function(){
 fnA.hidden=false;fnA.className='qa s';
-fnA.textContent='✅ ¡Ese es mi otro número favorito que lo encontré gracias a ti! 🥺💖';
+fnA.textContent='\u2705 Ese es mi otro numero favorito que lo encontre gracias a ti! \u{1F979}\u{1F496}';
 fn1.disabled=true;fn2.disabled=true;fn3.disabled=true;fn4.disabled=true;
 fn1.style.opacity='.4';fn2.style.opacity='.4';fn4.style.opacity='.4';
 fn3.style.border='2px solid #2e7d32';fn3.style.background='#f0fff4';
@@ -504,6 +478,3 @@ if(ya||adm)qS.hidden=false;
 </script>
 </body>
 </html>
-
-
-
