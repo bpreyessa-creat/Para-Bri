@@ -284,13 +284,30 @@ document.getElementById('footerSignature').textContent=C.r;
 var spl=document.getElementById('splash'),sEnv=document.getElementById('splashEnv');
 var sCd=document.getElementById('splashCd'),sBtn=document.getElementById('splashBtn');
 var sHint=document.getElementById('splashHint'),sS=false,sT=null;
+
 sEnv.addEventListener('click',function(){
-if(sS)return;sS=true;sHint.textContent='💖';sCd.classList.add('show');
-if(ya||adm){sCd.classList.add('today');sCd.textContent=ya?'¡Hoy es nuestro día! 💕':'🔧 Vista previa';
-setTimeout(function(){sBtn.classList.add('show');},500);}
-else{rSCd();sT=setInterval(rSCd,1000);
-if(adm)setTimeout(function(){sBtn.classList.add('show');sBtn.textContent='🔧 Entrar (admin)';},500);}
-});
+if(sS)return;sS=true;sCd.classList.add('show');
+if(ya||adm){
+sHint.textContent='¡Hoy es el día! 💖';
+sCd.classList.add('today');sCd.textContent=ya?'¡Tu sorpresa está lista! 🎁':'🔧 Vista previa';
+setTimeout(function(){sBtn.classList.add('show');},500);
+}else{
+sHint.textContent='';
+function updSplash(){
+var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
+if(df<=0){clearInterval(sT);
+sHint.textContent='¡Hoy es el día! 💖';
+sCd.classList.add('today');sCd.textContent='¡Tu sorpresa está lista! 🎁';
+sBtn.classList.add('show');return;}
+var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
+var txt='Faltan ';
+if(d>0)txt+=d+(d===1?' día, ':' días, ');
+txt+=h+'h '+m+'m '+sc+'s';
+sHint.innerHTML='⏳ '+txt+' para abrir tu sorpresa 🎁';
+sCd.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sc+'</span><span class="label">seg</span></div>';}
+updSplash();sT=setInterval(updSplash,1000);
+if(adm){setTimeout(function(){sBtn.classList.add('show');sBtn.textContent='🔧 Entrar (admin)';},500);}
+}});
 function rSCd(){var now=new Date(),tg=new Date(fa.getFullYear(),fa.getMonth(),fa.getDate()),df=tg-now;
 if(df<=0){clearInterval(sT);sCd.classList.add('today');sCd.textContent='¡Hoy es nuestro día! 💕';sBtn.classList.add('show');return;}
 var s=Math.floor(df/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sc=s%60;
