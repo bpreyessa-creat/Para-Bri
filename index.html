@@ -77,7 +77,21 @@
   .memory-photo.placeholder{display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:1.6rem;}
   .memory-text{flex:1;min-width:200px;color:var(--gray-500);}
 
-  .final-section{text-align:center;background:linear-gradient(145deg,var(--pink),var(--pink-dark));color:#fff;border-radius:14px;padding:4rem 1.8rem;max-width:900px;margin:2rem auto 0;box-shadow:0 20px 40px -15px rgba(224,69,123,0.35);}
+  /* QUIZ */
+  .quiz-section{text-align:center;max-width:500px;margin:2rem auto;padding:3rem 1.8rem;background:#fffaf5;border-radius:14px;border:2px solid var(--pink-pale);box-shadow:var(--shadow-md);position:relative;z-index:2;}
+  .quiz-section[hidden]{display:none;}
+  .quiz-section h2{margin-bottom:0.5rem;}
+  .quiz-question{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gray-600);margin:1rem 0 1.5rem;}
+  .quiz-option{display:block;width:100%;margin:0.6rem 0;padding:1rem;background:#fff;border:2px solid var(--pink-pale);border-radius:12px;font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--gray-600);cursor:pointer;transition:all 0.3s;}
+  .quiz-option:hover{border-color:var(--pink);background:var(--pink-blush);transform:translateY(-2px);box-shadow:var(--shadow-pink);}
+  .quiz-emoji{font-size:3rem;display:block;margin-bottom:1rem;}
+  .quiz-alert{margin-top:1.2rem;padding:1rem 1.4rem;border-radius:10px;font-family:'Caveat',cursive;font-size:1.2rem;animation:layerAppear 0.4s ease-out both;}
+  .quiz-alert[hidden]{display:none;}
+  .quiz-alert.wrong{background:#fff0f0;border:1px solid #ffcdd2;color:#c62828;}
+  .quiz-alert.success{background:#f0fff4;border:1px solid #c8e6c9;color:#2e7d32;}
+
+  .final-section{text-align:center;background:linear-gradient(145deg,var(--pink),var(--pink-dark));color:#fff;border-radius:14px;padding:4rem 1.8rem;max-width:900px;margin:2rem auto 0;box-shadow:0 20px 40px -15px rgba(224,69,123,0.35);position:relative;z-index:2;}
+  .final-section[hidden]{display:none;}
   .final-section h2{color:#fff;}
   .final-section .final-letter{max-width:var(--line-len);margin:1.6rem auto 2rem;text-align:left;white-space:pre-line;font-size:1.05rem;line-height:1.8;opacity:0.95;}
   .final-section .signature-name{color:#fff;font-family:'Caveat',cursive;font-size:2.2rem;font-weight:600;}
@@ -145,12 +159,12 @@
     .env-anim-flap{border-left:110px solid transparent;border-right:110px solid transparent;border-top:80px solid var(--pink-pale);}
     .letter-pull{left:15px;right:15px;height:125px;}
     .layer-card{padding:1.6rem 1.2rem;}
+    .quiz-section{margin:1rem;padding:2rem 1.2rem;}
   }
 </style>
 </head>
 <body>
 
-<!-- Audio MP3 oculto -->
 <audio id="audioPlayer" preload="auto" loop>
   <source src="cancion.mp3.mp3" type="audio/mpeg">
 </audio>
@@ -188,6 +202,16 @@
 
 <div class="section-deco">✦ ✦ ✦</div>
 
+<!-- QUIZ MINI JUEGO -->
+<section class="quiz-section" id="quizSection" hidden>
+  <span class="quiz-emoji">🔐</span>
+  <h2>Una última cosa...</h2>
+  <p class="quiz-question">¿Cuál es la comida favorita de Paolo?</p>
+  <button class="quiz-option" id="quizBtn">🍗 Ají de gallina</button>
+  <div class="quiz-alert" id="quizAlert" hidden></div>
+</section>
+
+<!-- MENSAJE FINAL -->
 <section class="final-section" id="finalSection" hidden>
   <h2>Feliz aniversario</h2>
   <div class="final-letter" id="finalLetter"></div>
@@ -277,23 +301,22 @@ var CONFIG = {
         }
       ]
     },
-    
-{ fecha:"2026-09-09", titulo:"Lo que más amo de ti 🌹", efecto:"", capas:[
-  {
-    emoji:"🌹",
-    titulo:"Lo que más amo de ti",
-    texto:"¿Sabes qué es lo que más amo de ti? Tu mente, tu forma de pensar, cómo siempre dices las cosas correctas en el momento justo. Amo tus consejos. Amo tus buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mí y me apoyas en todo. Tú no solo eres mi novia, eres mi todo y una persona con una muy buena inteligencia emocional, y tenerte a mi lado me hace sentir que todo va a estar bien. 🌹",
-    boton:"Ver foto 📸"
-  },
-  {
-    tipo:"galeria",
-    titulo:"Mi persona favorita 🌹",
-    fotos:[
-      { src:"https://i.imgur.com/rKwSxCs.jpeg", caption:"Te amo 💕" }
-    ],
-    boton:null
-  }
-] },
+    { fecha:"2026-09-09", titulo:"Lo que más amo de ti 🌹", efecto:"", capas:[
+      {
+        emoji:"🌹",
+        titulo:"Lo que más amo de ti",
+        texto:"¿Sabes qué es lo que más amo de ti? Tu mente, tu forma de pensar, cómo siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razón. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mí y me apoyas en todo. Tú no solo eres mi novia, eres la persona más sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. 🌹",
+        boton:"Ver foto 📸"
+      },
+      {
+        tipo:"galeria",
+        titulo:"Mi persona favorita 🌹",
+        fotos:[
+          { src:"https://i.imgur.com/rKwSxCs.jpeg", caption:"Te amo 💕" }
+        ],
+        boton:null
+      }
+    ] },
     { fecha:"2026-09-10", titulo:"Un recuerdo que guardo en el corazón 📸", efecto:"", capas:[{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸",boton:null}] },
     { fecha:"2026-09-11", titulo:"Lo que admiro de ti ⭐", efecto:"", capas:[{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐",boton:null}] },
     { fecha:"2026-09-12", titulo:"Mis promesas para ti 🤝", efecto:"", capas:[{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝",boton:null}] },
@@ -305,16 +328,8 @@ var CONFIG = {
 
 /* Audio */
 var audioPlayer=document.getElementById('audioPlayer');
-
-function playMusic(){
-  audioPlayer.currentTime=0;
-  audioPlayer.play().catch(function(){});
-}
-
-function stopMusic(){
-  audioPlayer.pause();
-  audioPlayer.currentTime=0;
-}
+function playMusic(){audioPlayer.currentTime=0;audioPlayer.play().catch(function(){});}
+function stopMusic(){audioPlayer.pause();audioPlayer.currentTime=0;}
 
 /* Admin */
 var urlParams=new URLSearchParams(window.location.search);
@@ -471,10 +486,7 @@ function showLayer(carta,index){
     if(capa.boton&&index<carta.capas.length-1){
       var btn=document.createElement('button');btn.className='layer-btn';btn.textContent=capa.boton;
       btn.addEventListener('click',function(){
-        /* Iniciar música MP3 al tocar "Ver nuestras fotos" */
-        if(capa.iniciarMusica&&carta.tieneMusica){
-          playMusic();
-        }
+        if(capa.iniciarMusica&&carta.tieneMusica){playMusic();}
         showLayer(carta,index+1);
       });
       card.appendChild(btn);
@@ -531,10 +543,7 @@ function closeModal(carta){
   modalOverlay.hidden=true;
   if(typewriterInterval){clearInterval(typewriterInterval);typewriterInterval=null;}
   layersContainer.innerHTML='';
-  /* Parar música al cerrar la carta */
-  if(carta&&carta.tieneMusica){
-    stopMusic();
-  }
+  if(carta&&carta.tieneMusica){stopMusic();}
 }
 modalOverlay.addEventListener('click',function(e){if(e.target===modalOverlay){closeModal(currentCarta);}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal(currentCarta);});
@@ -547,11 +556,49 @@ if(CONFIG.recuerdos.length===0){
   timelineEl.appendChild(em);
 }
 
-/* Final */
+/* QUIZ MINI JUEGO */
+var quizClicks=0;
+var quizAlert=document.getElementById('quizAlert');
+var quizSection=document.getElementById('quizSection');
+var quizBtn=document.getElementById('quizBtn');
+
+quizBtn.addEventListener('click',function(){
+  quizClicks++;
+  quizAlert.hidden=false;
+
+  if(quizClicks===1){
+    quizAlert.className='quiz-alert wrong';
+    quizAlert.textContent='❌ Incorrecto... ¡Es ají de gallina de mi mami! 😤';
+  }
+  else if(quizClicks===2){
+    quizAlert.className='quiz-alert wrong';
+    quizAlert.textContent='❌ Sigues sin acertar... 🤔 (o quizás sí, no sé jaja)';
+  }
+  else if(quizClicks>=3){
+    quizAlert.className='quiz-alert success';
+    quizAlert.textContent='✅ No mentira, ¡sí está bien! 😂💖 Aquí va tu sorpresa...';
+
+    setTimeout(function(){
+      quizSection.style.transition='opacity 0.5s, transform 0.5s';
+      quizSection.style.opacity='0';
+      quizSection.style.transform='translateY(-20px)';
+    },1500);
+
+    setTimeout(function(){
+      quizSection.hidden=true;
+      document.getElementById('finalSection').hidden=false;
+      document.getElementById('finalSection').style.animation='layerAppear 0.8s ease-out both';
+      document.getElementById('finalLetter').textContent=CONFIG.mensajeFinal;
+      document.getElementById('finalSignature').textContent=CONFIG.nombreRemitente;
+      launchConfetti();
+      createHeartBurst();
+    },2200);
+  }
+});
+
+/* Mostrar quiz si ya llegó el día o modo admin */
 if(yaLlegoElDia||modoAdmin){
-  document.getElementById('finalSection').hidden=false;
-  document.getElementById('finalLetter').textContent=CONFIG.mensajeFinal;
-  document.getElementById('finalSignature').textContent=CONFIG.nombreRemitente;
+  quizSection.hidden=false;
 }
 </script>
 </body>
