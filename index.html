@@ -686,6 +686,7 @@ function checkNumber(){
   if(val==='7'){
     numberAlert.className='quiz-alert success';
     numberAlert.textContent='✅ ¡Correcto! 💖 Aquí va tu sorpresa...';
+    var cancionFinal=document.getElementById('cancionFinal');cancionFinal.play().catch(function(){});
     numberBtn.disabled=true;numberInput.disabled=true;
 
     setTimeout(function(){
