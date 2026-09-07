@@ -118,6 +118,32 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 .cc{position:fixed;inset:0;pointer-events:none;z-index:80}
 .cp{position:absolute;top:-20px;width:10px;height:10px;animation:cf linear forwards}
 @keyframes cf{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+  
+/* SPLASH SCREEN */
+.splash{position:fixed;inset:0;z-index:200;background:#FFF5F7;background-image:radial-gradient(circle at 50% 50%,rgba(224,69,123,0.08),transparent 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s,transform 0.8s;}
+.splash.hide{opacity:0;transform:scale(1.05);pointer-events:none;}
+.splash[hidden]{display:none;}
+.splash-env{width:220px;aspect-ratio:3/2;position:relative;cursor:pointer;animation:sFloat 3s ease-in-out infinite;}
+@keyframes sFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.splash-env .sb{position:absolute;inset:0;background:linear-gradient(145deg,#fff,#FFF0F3);border:2px solid #F8BBD0;border-radius:10px;box-shadow:0 20px 50px -10px rgba(224,69,123,0.25);}
+.splash-env .sf{position:absolute;top:0;left:0;right:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:75px solid #F8BBD0;}
+.splash-env .ss{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#E0457B,#C42D63);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(224,69,123,0.4);z-index:2;transition:transform 0.3s;}
+.splash-env:hover .ss{transform:translate(-50%,-50%) scale(1.15);}
+.splash-title{font-family:'Cormorant Garamond',serif;font-weight:600;color:#E0457B;font-size:clamp(1.8rem,5vw,2.8rem);margin-top:2rem;opacity:0;animation:sFadeIn 1s 0.5s ease-out forwards;}
+@keyframes sFadeIn{to{opacity:1;}}
+.splash-hint{font-family:'Caveat',cursive;font-size:1.1rem;color:#A3808A;margin-top:0.8rem;opacity:0;animation:sFadeIn 1s 1.5s ease-out forwards;}
+.splash-cd{margin-top:2rem;display:inline-flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;padding:1.2rem 1.6rem;background:rgba(255,255,255,0.8);border:1px solid #F8BBD0;border-radius:12px;opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
+.splash-cd.show{opacity:1;transform:translateY(0);}
+.splash-cd .unit{text-align:center;min-width:50px;}
+.splash-cd .num{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.8rem;color:#E0457B;}
+.splash-cd .label{font-size:0.75rem;color:#7A5A63;}
+.splash-cd.today{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#E0457B;background:none;border:none;}
+.splash-btn{margin-top:1.5rem;padding:1rem 2.5rem;background:linear-gradient(135deg,#E0457B,#C42D63);color:#fff;border:none;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px -5px rgba(224,69,123,0.4);opacity:0;transform:translateY(10px);transition:opacity 0.5s,transform 0.5s;}
+.splash-btn.show{opacity:1;transform:translateY(0);}
+.splash-btn:hover{transform:translateY(-2px);}
+.main-page{opacity:0;transform:translateY(30px);transition:opacity 0.8s,transform 0.8s;}
+.main-page.visible{opacity:1;transform:translateY(0);}
+@media(max-width:560px){.splash-env{width:180px;}.splash-env .sf{border-left:90px solid transparent;border-right:90px solid transparent;border-top:60px solid #F8BBD0;}}
 @media(max-width:560px){section,header.hero,footer.so{padding:3.5rem 1.2rem}.ea{width:220px;height:150px}.eai{border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:75px solid var(--pkb)}.eaf{border-left:110px solid transparent;border-right:110px solid transparent;border-top:80px solid var(--pkp)}.lp{left:15px;right:15px;height:125px}.lca{padding:1.6rem 1.2rem}.qs{margin:1rem;padding:2rem 1.2rem}.senv{width:180px}.senv .sfl{border-left:90px solid transparent;border-right:90px solid transparent;border-top:60px solid var(--pkp)}}
 </style></head><body>
 <div class="splash" id="splash">
@@ -273,15 +299,27 @@ rCd();setInterval(rCd,1e3);
 var clEl=document.getElementById('clothesline');
 var co=[].concat(C.cartas).sort(function(a,b){return pld(a.fecha)-pld(b.fecha);});
 co.forEach(function(ct){var f=pld(ct.fecha),ul=adm||today>=f;
-var it=document.createElement('div');it.className='li '+(ul?'ul':'lk');
+var esPrincipal=ct.fecha===C.fa;
+var it=document.createElement('div');
+it.className='li '+(ul?'ul':'lk')+(esPrincipal?' principal':'');
 var cl=document.createElement('div');cl.className='clip';it.appendChild(cl);
+if(esPrincipal){
+var sparkles=document.createElement('div');sparkles.className='sparkles';
+sparkles.innerHTML='<span>✨</span><span>⭐</span><span>💫</span><span>✨</span><span>⭐</span>';
+it.appendChild(sparkles);
+var glow=document.createElement('div');glow.className='glow-ring';
+it.appendChild(glow);}
 var bt=document.createElement('button');bt.className='envb '+(ul?'ul':'lk');
 var se=document.createElement('div');se.className='ms';bt.appendChild(se);
 if(ul)bt.addEventListener('click',(function(c){return function(){seA(c);};})(ct));
 else bt.disabled=true;it.appendChild(bt);
 var cp=document.createElement('p');cp.className='lc';
 cp.textContent=ul?fdm(f):'Se abre el '+fdm(f);
-it.appendChild(cp);clEl.appendChild(it);});
+it.appendChild(cp);
+if(esPrincipal){var tag=document.createElement('span');tag.className='tag';
+tag.textContent='💖 Nuestro día';it.appendChild(tag);}
+clEl.appendChild(it);});
+
 var eo=document.getElementById('envOverlay'),eF=document.getElementById('eFlap');
 var eS=document.getElementById('eSeal'),lPl=document.getElementById('lPull'),cC=null;
 function seA(ct){cC=ct;eF.classList.remove('open');eS.classList.remove('brk');lPl.classList.remove('out');
