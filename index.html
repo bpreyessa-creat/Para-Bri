@@ -26,6 +26,39 @@
   h2{font-size:clamp(1.7rem,4vw,2.4rem);font-style:italic;font-weight:500;color:var(--gray-800);}
   p{margin:0 0 1em;}a{color:var(--pink);}button{font-family:inherit;cursor:pointer;}
 
+  /* ========== SPLASH INTRO ========== */
+  .splash-screen{position:fixed;inset:0;z-index:200;background:var(--bg);background-image:radial-gradient(circle at 50% 50%,rgba(224,69,123,0.08),transparent 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s,transform 0.8s;}
+  .splash-screen.fade-out{opacity:0;transform:scale(1.05);pointer-events:none;}
+  .splash-screen[hidden]{display:none;}
+
+  .splash-envelope{width:220px;aspect-ratio:3/2;position:relative;cursor:pointer;transition:transform 0.3s;animation:splashFloat 3s ease-in-out infinite;}
+  .splash-envelope:hover{transform:scale(1.05);}
+  @keyframes splashFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+  .splash-envelope .s-body{position:absolute;inset:0;background:linear-gradient(145deg,#fff,var(--bg-alt));border:2px solid var(--pink-pale);border-radius:10px;box-shadow:0 20px 50px -10px rgba(224,69,123,0.25);}
+  .splash-envelope .s-flap{position:absolute;top:0;left:0;right:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:75px solid var(--pink-pale);}
+  .splash-envelope .s-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-dark));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(224,69,123,0.4);z-index:2;transition:transform 0.3s,box-shadow 0.3s;}
+  .splash-envelope:hover .s-seal{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 6px 25px rgba(224,69,123,0.5);}
+
+  .splash-title{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--pink);font-size:clamp(1.8rem,5vw,2.8rem);margin-top:2rem;opacity:0;animation:splashTitleIn 1s 0.5s ease-out forwards;}
+  @keyframes splashTitleIn{to{opacity:1;}}
+
+  .splash-hint{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gray-400);margin-top:0.8rem;opacity:0;animation:splashTitleIn 1s 1.5s ease-out forwards;}
+
+  .splash-countdown{margin-top:2rem;display:inline-flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;padding:1.2rem 1.6rem;background:rgba(255,255,255,0.8);border:1px solid var(--pink-pale);border-radius:12px;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
+  .splash-countdown.show{opacity:1;transform:translateY(0);}
+  .splash-countdown .unit{text-align:center;min-width:50px;}
+  .splash-countdown .num{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.8rem;color:var(--pink);}
+  .splash-countdown .label{font-size:0.75rem;letter-spacing:0.02em;color:var(--gray-500);}
+  .splash-countdown.today-msg{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--pink);background:none;border:none;box-shadow:none;padding:0.8rem;}
+
+  .splash-enter-btn{margin-top:1.5rem;padding:1rem 2.5rem;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;border:none;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px -5px rgba(224,69,123,0.4);transition:transform 0.2s,box-shadow 0.2s;opacity:0;transform:translateY(10px);transition:opacity 0.5s,transform 0.5s;}
+  .splash-enter-btn.show{opacity:1;transform:translateY(0);}
+  .splash-enter-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px -5px rgba(224,69,123,0.5);}
+
+  /* ========== MAIN PAGE (hidden initially) ========== */
+  .main-page{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .main-page.visible{opacity:1;transform:translateY(0);}
+
   .admin-banner{position:fixed;top:0;left:0;right:0;background:var(--pink-dark);color:#fff;text-align:center;padding:6px 12px;font-size:0.8rem;z-index:100;}
   .admin-banner[hidden]{display:none;}
 
@@ -77,7 +110,6 @@
   .memory-photo.placeholder{display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:1.6rem;}
   .memory-text{flex:1;min-width:200px;color:var(--gray-500);}
 
-  /* QUIZ */
   .quiz-section{text-align:center;max-width:500px;margin:2rem auto;padding:3rem 1.8rem;background:#fffaf5;border-radius:14px;border:2px solid var(--pink-pale);box-shadow:var(--shadow-md);position:relative;z-index:2;}
   .quiz-section[hidden]{display:none;}
   .quiz-section h2{margin-bottom:0.5rem;}
@@ -160,12 +192,37 @@
     .letter-pull{left:15px;right:15px;height:125px;}
     .layer-card{padding:1.6rem 1.2rem;}
     .quiz-section{margin:1rem;padding:2rem 1.2rem;}
+    .splash-envelope{width:180px;}
+    .splash-envelope .s-flap{border-left:90px solid transparent;border-right:90px solid transparent;border-top:60px solid var(--pink-pale);}
   }
 </style>
 </head>
 <body>
 
-<!-- Audio para Carta 1 -->
+<!-- ========== SPLASH INTRO ========== -->
+<div class="splash-screen" id="splashScreen">
+  <div class="floating-hearts" aria-hidden="true">
+    <span style="left:12%;animation-duration:18s;--drift:15px;">♥</span>
+    <span style="left:45%;animation-duration:22s;animation-delay:2s;--drift:-20px;">♥</span>
+    <span style="left:78%;animation-duration:17s;animation-delay:4s;--drift:10px;">♥</span>
+  </div>
+
+  <div class="splash-envelope" id="splashEnvelope">
+    <div class="s-body"></div>
+    <div class="s-flap"></div>
+    <div class="s-seal" id="splashSeal">P</div>
+  </div>
+
+  <div class="splash-title">Para Brigith 💌</div>
+  <div class="splash-hint" id="splashHint">Toca la P para descubrir...</div>
+
+  <div class="splash-countdown" id="splashCountdown"></div>
+  <button class="splash-enter-btn" id="splashEnterBtn">Abrir mi regalo 💖</button>
+</div>
+
+<!-- ========== MAIN PAGE ========== -->
+<div class="main-page" id="mainPage">
+
 <audio id="audioPlayer" preload="auto" loop>
   <source src="cancion.mp3.mp3" type="audio/mpeg">
 </audio>
@@ -219,17 +276,8 @@
   <span class="quiz-emoji">🔢</span>
   <h2>Casi lo logras...</h2>
   <p class="quiz-question">Pon mi número favorito para desbloquear 💖</p>
-  <input type="number" id="numberInput" placeholder="Escribe el número..." style="
-    display:block;width:100%;padding:1rem;margin:0.8rem 0;
-    border:2px solid var(--pink-pale);border-radius:12px;
-    font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;
-    color:var(--pink-dark);background:#fff;outline:none;
-    transition:border-color 0.3s;
-  ">
-  <button class="quiz-option" id="numberBtn" style="
-    background:linear-gradient(135deg,var(--pink),var(--pink-dark));
-    color:#fff;border:none;margin-top:0.5rem;font-weight:600;
-  ">Desbloquear 💖</button>
+  <input type="number" id="numberInput" placeholder="Escribe el número..." style="display:block;width:100%;padding:1rem;margin:0.8rem 0;border:2px solid var(--pink-pale);border-radius:12px;font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;color:var(--pink-dark);background:#fff;outline:none;">
+  <button class="quiz-option" id="numberBtn" style="background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;border:none;margin-top:0.5rem;font-weight:600;">Desbloquear 💖</button>
   <div class="quiz-alert" id="numberAlert" hidden></div>
 </section>
 
@@ -237,41 +285,21 @@
 <section class="final-section" id="finalSection" hidden>
   <h2>Feliz aniversario</h2>
   <div class="final-letter" id="finalLetter"></div>
-
-  <!-- FOTO FINAL -->
   <div style="margin:2rem auto;max-width:320px;">
-    <img src="https://i.imgur.com/lGKQQIZ.jpeg" alt="Nosotros" style="
-      width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);
-      box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
-    ">
+    <img src="https://i.imgur.com/lGKQQIZ.jpeg" alt="Nosotros" style="width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);">
   </div>
-
-  <!-- VIDEO PRIMEROS BESOS -->
   <div style="margin:2rem auto;max-width:360px;">
     <p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,0.9);margin-bottom:0.8rem;">Cuando nos dimos nuestros primeros besos 💋</p>
-    <video controls playsinline style="
-      width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);
-      box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
-    ">
+    <video controls playsinline style="width:100%;border-radius:12px;border:4px solid rgba(255,255,255,0.5);box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);">
       <source src="https://i.imgur.com/wxJVe6n.mp4" type="video/mp4">
     </video>
   </div>
-
-  <!-- =============================================
-       🎵 NUESTRA PRIMERA CANCIÓN
-       👉 PAOLO: Aquí va tu archivo cancion1.mp3
-       👉 Asegúrate de que esté subido en tu repositorio
-       ============================================= -->
   <div style="margin:2rem auto;text-align:center;">
     <p style="font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(255,255,255,0.9);margin-bottom:0.8rem;">🎵 Nuestra primera canción 🎵</p>
-    <audio id="cancionFinal" controls loop style="
-      width:80%;max-width:300px;border-radius:30px;
-    ">
-      <!-- 👇👇👇 AQUÍ VA TU CANCIÓN — el archivo cancion1.mp3 👇👇👇 -->
+    <audio id="cancionFinal" controls loop style="width:80%;max-width:300px;border-radius:30px;">
       <source src="cancion1.mp3" type="audio/mpeg">
     </audio>
   </div>
-
   <span class="signature-name" id="finalSignature"></span>
 </section>
 
@@ -279,6 +307,8 @@
   <p>Con todo mi amor,</p>
   <span class="signature-name" id="footerSignature"></span>
 </footer>
+
+</div><!-- /main-page -->
 
 <div class="envelope-anim-overlay" id="envelopeAnimOverlay" hidden>
   <div class="envelope-anim" id="envelopeAnim">
@@ -309,81 +339,47 @@ var CONFIG = {
       efecto:"typewriter",
       tieneMusica:true,
       capas:[
-        {
-          emoji:"💌",
-          titulo:"Tienes una carta...",
-          texto:"Hoy es un día especial. Alguien quiso escribirte algo desde el corazón. ¿Estás lista para leerlo?",
-          boton:"Abrir carta 💖"
-        },
-        {
-          emoji:"🥺",
-          titulo:"Antes de leer...",
-          texto:"Quiero que sepas que cada palabra aquí la escribí pensando en ti, en nosotros, en todo lo que hemos vivido juntos. Nada de esto existiría sin ti.",
-          boton:"Seguir leyendo ✨"
-        },
-        {
-          emoji:"💖",
-          titulo:"Feliz aniversario, mi amor",
-          texto:"Brigith, hoy es nuestro día. El día que mi vida cambió por completo. Desde aquel momento, cada día a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos más. Te adoro mi princesita hermosa Bri Blanquita Yllarita 💖",
-          boton:"Ver nuestras fotos 📸",
-          esTextoFinal:true,
-          iniciarMusica:true
-        },
-        {
-          tipo:"galeria",
-          titulo:"Nuestros momentos 📸",
-          fotos:[
-            { src:"https://i.imgur.com/r88VvUD.jpeg", caption:"Nuestros momentos 💕" },
-            { src:"https://i.imgur.com/mXeOtos.jpeg", caption:"" },
-            { src:"https://i.imgur.com/Ntwkfdt.jpeg", caption:"" },
-            { src:"https://i.imgur.com/k24tj0M.jpeg", caption:"" },
-            { src:"https://i.imgur.com/lz8DP28.jpeg", caption:"" },
-            { src:"https://i.imgur.com/QZZoWQ1.jpeg", caption:"" },
-            { src:"https://i.imgur.com/orVdbmi.jpeg", caption:"" },
-            { src:"https://i.imgur.com/ScX2QEk.jpeg", caption:"" },
-            { src:"https://i.imgur.com/vNrte4R.jpeg", caption:"" },
-            { src:"https://i.imgur.com/fLuMKcc.jpeg", caption:"" },
-            { src:"https://i.imgur.com/SL568jP.jpeg", caption:"" },
-            { src:"https://i.imgur.com/tcBCu4D.jpeg", caption:"" },
-            { src:"https://i.imgur.com/dEogSN4.jpeg", caption:"" },
-            { src:"https://i.imgur.com/kAOuU2R.jpeg", caption:"" },
-            { src:"https://i.imgur.com/hEn3JXv.jpeg", caption:"" },
-            { src:"https://i.imgur.com/9IOYroz.jpeg", caption:"" },
-            { src:"https://i.imgur.com/xFdLsh7.jpeg", caption:"" },
-            { src:"https://i.imgur.com/KpioTZm.jpeg", caption:"" },
-            { src:"https://i.imgur.com/TkL5J3h.jpeg", caption:"" },
-            { src:"https://i.imgur.com/FSQaAYO.jpeg", caption:"" }
-          ],
-          boton:null
-        }
+        {emoji:"💌",titulo:"Tienes una carta...",texto:"Hoy es un día especial. Alguien quiso escribirte algo desde el corazón. ¿Estás lista para leerlo?",boton:"Abrir carta 💖"},
+        {emoji:"🥺",titulo:"Antes de leer...",texto:"Quiero que sepas que cada palabra aquí la escribí pensando en ti, en nosotros, en todo lo que hemos vivido juntos. Nada de esto existiría sin ti.",boton:"Seguir leyendo ✨"},
+        {emoji:"💖",titulo:"Feliz aniversario, mi amor",texto:"Brigith, hoy es nuestro día. El día que mi vida cambió por completo. Desde aquel momento, cada día a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos más. Te adoro mi princesita hermosa Bri Blanquita Yllarita 💖",boton:"Ver nuestras fotos 📸",esTextoFinal:true,iniciarMusica:true},
+        {tipo:"galeria",titulo:"Nuestros momentos 📸",fotos:[
+          {src:"https://i.imgur.com/r88VvUD.jpeg",caption:"Nuestros momentos 💕"},
+          {src:"https://i.imgur.com/mXeOtos.jpeg",caption:""},
+          {src:"https://i.imgur.com/Ntwkfdt.jpeg",caption:""},
+          {src:"https://i.imgur.com/k24tj0M.jpeg",caption:""},
+          {src:"https://i.imgur.com/lz8DP28.jpeg",caption:""},
+          {src:"https://i.imgur.com/QZZoWQ1.jpeg",caption:""},
+          {src:"https://i.imgur.com/orVdbmi.jpeg",caption:""},
+          {src:"https://i.imgur.com/ScX2QEk.jpeg",caption:""},
+          {src:"https://i.imgur.com/vNrte4R.jpeg",caption:""},
+          {src:"https://i.imgur.com/fLuMKcc.jpeg",caption:""},
+          {src:"https://i.imgur.com/SL568jP.jpeg",caption:""},
+          {src:"https://i.imgur.com/tcBCu4D.jpeg",caption:""},
+          {src:"https://i.imgur.com/dEogSN4.jpeg",caption:""},
+          {src:"https://i.imgur.com/kAOuU2R.jpeg",caption:""},
+          {src:"https://i.imgur.com/hEn3JXv.jpeg",caption:""},
+          {src:"https://i.imgur.com/9IOYroz.jpeg",caption:""},
+          {src:"https://i.imgur.com/xFdLsh7.jpeg",caption:""},
+          {src:"https://i.imgur.com/KpioTZm.jpeg",caption:""},
+          {src:"https://i.imgur.com/TkL5J3h.jpeg",caption:""},
+          {src:"https://i.imgur.com/FSQaAYO.jpeg",caption:""}
+        ],boton:null}
       ]
     },
-    { fecha:"2026-09-09", titulo:"Lo que más amo de ti 🌹", efecto:"", capas:[
-      {
-        emoji:"🌹",
-        titulo:"Lo que más amo de ti",
-        texto:"¿Sabes qué es lo que más amo de ti? Tu mente, tu forma de pensar, cómo siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razón. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mí y me apoyas en todo. Tú no solo eres mi novia, eres la persona más sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. 🌹",
-        boton:"Ver foto 📸"
-      },
-      {
-        tipo:"galeria",
-        titulo:"Mi persona favorita 🌹",
-        fotos:[
-          { src:"https://i.imgur.com/rKwSxCs.jpeg", caption:"Te amo 💕" }
-        ],
-        boton:null
-      }
-    ] },
-    { fecha:"2026-09-10", titulo:"Un recuerdo que guardo en el corazón 📸", efecto:"", capas:[{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸",boton:null}] },
-    { fecha:"2026-09-11", titulo:"Lo que admiro de ti ⭐", efecto:"", capas:[{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐",boton:null}] },
-    { fecha:"2026-09-12", titulo:"Mis promesas para ti 🤝", efecto:"", capas:[{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝",boton:null}] },
-    { fecha:"2026-09-13", titulo:"Nuestros momentos 😄", efecto:"", capas:[{emoji:"😄",titulo:"Nuestros momentos",texto:"¿Te acuerdas de todas esas veces que nos reímos hasta que nos dolió el estómago? ¿De las conversaciones largas que no queríamos terminar? ¿De los silencios cómodos donde no hacía falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo más simple se vuelve especial. 😄",boton:null}] },
-    { fecha:"2026-09-14", titulo:"Para siempre 💖", efecto:"", capas:[{emoji:"💖",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mí. Pero la verdad es que ninguna palabra es suficiente. Tú eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tú. Te amo hoy, mañana y siempre. Este es solo un aniversario más de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. 💖",boton:null}] }
+    {fecha:"2026-09-09",titulo:"Lo que más amo de ti 🌹",efecto:"",capas:[
+      {emoji:"🌹",titulo:"Lo que más amo de ti",texto:"¿Sabes qué es lo que más amo de ti? Tu mente, tu forma de pensar, cómo siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razón. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mí y me apoyas en todo. Tú no solo eres mi novia, eres la persona más sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. 🌹",boton:"Ver foto 📸"},
+      {tipo:"galeria",titulo:"Mi persona favorita 🌹",fotos:[{src:"https://i.imgur.com/rKwSxCs.jpeg",caption:"Te amo 💕"}],boton:null}
+    ]},
+    {fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazón 📸",efecto:"",capas:[{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸",boton:null}]},
+    {fecha:"2026-09-11",titulo:"Lo que admiro de ti ⭐",efecto:"",capas:[{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐",boton:null}]},
+    {fecha:"2026-09-12",titulo:"Mis promesas para ti 🤝",efecto:"",capas:[{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝",boton:null}]},
+    {fecha:"2026-09-13",titulo:"Nuestros momentos 😄",efecto:"",capas:[{emoji:"😄",titulo:"Nuestros momentos",texto:"¿Te acuerdas de todas esas veces que nos reímos hasta que nos dolió el estómago? ¿De las conversaciones largas que no queríamos terminar? ¿De los silencios cómodos donde no hacía falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo más simple se vuelve especial. 😄",boton:null}]},
+    {fecha:"2026-09-14",titulo:"Para siempre 💖",efecto:"",capas:[{emoji:"💖",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mí. Pero la verdad es que ninguna palabra es suficiente. Tú eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tú. Te amo hoy, mañana y siempre. Este es solo un aniversario más de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. 💖",boton:null}]}
   ],
   recuerdos:[]
 };
 
-/* Audio Carta 1 */
+/* Audio */
 var audioPlayer=document.getElementById('audioPlayer');
 function playMusic(){audioPlayer.currentTime=0;audioPlayer.play().catch(function(){});}
 function stopMusic(){audioPlayer.pause();audioPlayer.currentTime=0;}
@@ -409,7 +405,67 @@ document.getElementById('heroFrase').textContent=CONFIG.fraseHero;
 document.getElementById('footerSignature').textContent=CONFIG.nombreRemitente;
 document.getElementById('heroSeal').textContent=(CONFIG.nombreRemitente||'?').trim().charAt(0).toUpperCase()||'♥';
 
-/* Countdown */
+/* ========== SPLASH SCREEN LOGIC ========== */
+var splashScreen=document.getElementById('splashScreen');
+var splashEnvelope=document.getElementById('splashEnvelope');
+var splashCountdown=document.getElementById('splashCountdown');
+var splashEnterBtn=document.getElementById('splashEnterBtn');
+var splashHint=document.getElementById('splashHint');
+var splashCountdownStarted=false;
+var splashInterval=null;
+
+/* Al tocar la P del sobre */
+splashEnvelope.addEventListener('click',function(){
+  if(splashCountdownStarted) return;
+  splashCountdownStarted=true;
+  splashHint.textContent='💖';
+  splashCountdown.classList.add('show');
+
+  if(yaLlegoElDia||modoAdmin){
+    /* Ya es el día — mostrar botón para entrar */
+    splashCountdown.classList.add('today-msg');
+    splashCountdown.textContent=yaLlegoElDia?'¡Hoy es nuestro día! 💕':'🔧 Vista previa';
+    splashEnterBtn.classList.add('show');
+  } else {
+    /* Mostrar cuenta regresiva en splash */
+    renderSplashCountdown();
+    splashInterval=setInterval(function(){
+      renderSplashCountdown();
+    },1000);
+  }
+});
+
+function renderSplashCountdown(){
+  var now=new Date(),target=new Date(fechaAniversario.getFullYear(),fechaAniversario.getMonth(),fechaAniversario.getDate(),0,0,0),diff=target-now;
+  if(diff<=0){
+    /* ¡Llegó el momento! */
+    clearInterval(splashInterval);
+    splashCountdown.classList.add('today-msg');
+    splashCountdown.textContent='¡Hoy es nuestro día! 💕';
+    splashEnterBtn.classList.add('show');
+    return;
+  }
+  var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
+  splashCountdown.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sec+'</span><span class="label">seg</span></div>';
+
+  /* Si es modo admin, mostrar botón para entrar de todas formas */
+  if(modoAdmin&&!splashEnterBtn.classList.contains('show')){
+    splashEnterBtn.classList.add('show');
+    splashEnterBtn.textContent='🔧 Entrar (modo admin)';
+  }
+}
+
+/* Botón entrar — transición a la página */
+splashEnterBtn.addEventListener('click',function(){
+  if(splashInterval)clearInterval(splashInterval);
+  splashScreen.classList.add('fade-out');
+  setTimeout(function(){
+    splashScreen.hidden=true;
+    document.getElementById('mainPage').classList.add('visible');
+  },800);
+});
+
+/* ========== COUNTDOWN PRINCIPAL ========== */
 var countdownEl=document.getElementById('countdown');
 function renderCountdown(){
   var now=new Date(),target=new Date(fechaAniversario.getFullYear(),fechaAniversario.getMonth(),fechaAniversario.getDate(),0,0,0),diff=target-now;
@@ -417,7 +473,7 @@ function renderCountdown(){
   var s=Math.floor(diff/1e3),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
   countdownEl.innerHTML='<div class="unit"><span class="num">'+d+'</span><span class="label">días</span></div><div class="unit"><span class="num">'+h+'</span><span class="label">horas</span></div><div class="unit"><span class="num">'+m+'</span><span class="label">min</span></div><div class="unit"><span class="num">'+sec+'</span><span class="label">seg</span></div>';
 }
-renderCountdown();if(!modoAdmin)setInterval(renderCountdown,1e3);
+renderCountdown();setInterval(renderCountdown,1e3);
 
 /* Clothesline */
 var clothesline=document.getElementById('clothesline');
@@ -479,7 +535,6 @@ function showLayer(carta,index){
   var capa=carta.capas[index];
   layersContainer.innerHTML='';
   if(typewriterInterval){clearInterval(typewriterInterval);typewriterInterval=null;}
-
   var card=document.createElement('div');card.className='layer-card';
   var closeBtn=document.createElement('button');closeBtn.className='layer-close';closeBtn.textContent='✕';
   closeBtn.addEventListener('click',function(){closeModal(carta);});
@@ -490,7 +545,6 @@ function showLayer(carta,index){
     var galContainer=document.createElement('div');galContainer.className='gallery-container';
     var track=document.createElement('div');track.className='gallery-track';
     currentGalleryIndex=0;
-
     capa.fotos.forEach(function(foto){
       var slide=document.createElement('div');slide.className='gallery-slide';
       var img=document.createElement('img');img.src=foto.src;img.alt=foto.caption||'';
@@ -499,10 +553,8 @@ function showLayer(carta,index){
       track.appendChild(slide);
     });
     galContainer.appendChild(track);card.appendChild(galContainer);
-
     var counter=document.createElement('div');counter.className='gallery-counter';counter.id='galleryCounter';
     counter.textContent='1 / '+capa.fotos.length;card.appendChild(counter);
-
     if(capa.fotos.length>1){
       var nav=document.createElement('div');nav.className='gallery-nav';
       var leftArr=document.createElement('button');leftArr.className='gallery-arrow';leftArr.textContent='‹';
@@ -510,211 +562,15 @@ function showLayer(carta,index){
       var dots=document.createElement('div');dots.className='gallery-dots';
       for(var d=0;d<capa.fotos.length;d++){var dot=document.createElement('div');dot.className='gallery-dot'+(d===0?' active':'');dots.appendChild(dot);}
       nav.appendChild(leftArr);nav.appendChild(dots);nav.appendChild(rightArr);card.appendChild(nav);
-
-      leftArr.addEventListener('click',function(){
-        currentGalleryIndex=Math.max(0,currentGalleryIndex-1);
-        updateGallery(track,dots,capa.fotos.length);
-      });
-      rightArr.addEventListener('click',function(){
-        currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);
-        updateGallery(track,dots,capa.fotos.length);
-      });
-
+      leftArr.addEventListener('click',function(){currentGalleryIndex=Math.max(0,currentGalleryIndex-1);updateGallery(track,dots,capa.fotos.length);});
+      rightArr.addEventListener('click',function(){currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);updateGallery(track,dots,capa.fotos.length);});
       var touchStartX=0;
       galContainer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;},{passive:true});
-      galContainer.addEventListener('touchend',function(e){
-        var diff=touchStartX-e.changedTouches[0].clientX;
-        if(Math.abs(diff)>40){
-          if(diff>0)currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);
-          else currentGalleryIndex=Math.max(0,currentGalleryIndex-1);
-          updateGallery(track,dots,capa.fotos.length);
-        }
-      },{passive:true});
+      galContainer.addEventListener('touchend',function(e){var diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>40){if(diff>0)currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);else currentGalleryIndex=Math.max(0,currentGalleryIndex-1);updateGallery(track,dots,capa.fotos.length);}},{passive:true});
     }
     launchConfetti();
-
   } else {
     var emoji=document.createElement('span');emoji.className='layer-emoji';emoji.textContent=capa.emoji||'💌';card.appendChild(emoji);
     var h3=document.createElement('h3');h3.textContent=capa.titulo;card.appendChild(h3);
     var p=document.createElement('p');p.id='layerText';
-    if(capa.esTextoFinal&&carta.efecto==='typewriter'){card.appendChild(p);setTimeout(function(){typewriterEffect(p,capa.texto);},300);}
-    else{p.textContent=capa.texto;card.appendChild(p);}
-
-    if(capa.boton&&index<carta.capas.length-1){
-      var btn=document.createElement('button');btn.className='layer-btn';btn.textContent=capa.boton;
-      btn.addEventListener('click',function(){
-        if(capa.iniciarMusica&&carta.tieneMusica){playMusic();}
-        showLayer(carta,index+1);
-      });
-      card.appendChild(btn);
-    }
-  }
-  layersContainer.appendChild(card);
-}
-
-function showSimpleCard(carta){
-  var card=document.createElement('div');card.className='layer-card';
-  var closeBtn=document.createElement('button');closeBtn.className='layer-close';closeBtn.textContent='✕';
-  closeBtn.addEventListener('click',function(){closeModal(carta);});
-  card.appendChild(closeBtn);
-  var emoji=document.createElement('span');emoji.className='layer-emoji';emoji.textContent='💌';card.appendChild(emoji);
-  var h3=document.createElement('h3');h3.textContent=carta.titulo;card.appendChild(h3);
-  var p=document.createElement('p');
-  if(carta.capas&&carta.capas[0])p.textContent=carta.capas[0].texto;
-  card.appendChild(p);layersContainer.appendChild(card);
-}
-
-function updateGallery(track,dotsContainer,total){
-  track.style.transform='translateX(-'+currentGalleryIndex*100+'%)';
-  var allDots=dotsContainer.querySelectorAll('.gallery-dot');
-  for(var i=0;i<allDots.length;i++){allDots[i].className='gallery-dot'+(i===currentGalleryIndex?' active':'');}
-  var counter=document.getElementById('galleryCounter');
-  if(counter)counter.textContent=(currentGalleryIndex+1)+' / '+total;
-}
-
-function typewriterEffect(el,text){
-  if(typewriterInterval){clearInterval(typewriterInterval);}
-  var i=0,cursor=document.createElement('span');cursor.className='typewriter-cursor';
-  el.textContent='';el.appendChild(cursor);
-  typewriterInterval=setInterval(function(){
-    if(i<text.length){el.insertBefore(document.createTextNode(text.charAt(i)),cursor);i++;}
-    else{clearInterval(typewriterInterval);typewriterInterval=null;setTimeout(function(){cursor.remove();},2000);}
-  },40);
-}
-
-function launchConfetti(){
-  var c=document.createElement('div');c.className='confetti-container';document.body.appendChild(c);
-  var colors=['#E0457B','#F06292','#F8BBD0','#FCE4EC','#C42D63','#ff6b9d','#ffa5c3'];
-  for(var i=0;i<40;i++){
-    var p=document.createElement('div');p.className='confetti-piece';
-    p.style.left=Math.random()*100+'%';p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.width=(6+Math.random()*8)+'px';p.style.height=(6+Math.random()*8)+'px';
-    p.style.borderRadius=Math.random()>0.5?'50%':'2px';
-    p.style.animationDuration=(2+Math.random()*3)+'s';p.style.animationDelay=Math.random()*0.8+'s';
-    c.appendChild(p);
-  }
-  setTimeout(function(){c.remove();},5000);
-}
-
-function closeModal(carta){
-  modalOverlay.hidden=true;
-  if(typewriterInterval){clearInterval(typewriterInterval);typewriterInterval=null;}
-  layersContainer.innerHTML='';
-  if(carta&&carta.tieneMusica){stopMusic();}
-}
-modalOverlay.addEventListener('click',function(e){if(e.target===modalOverlay){closeModal(currentCarta);}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal(currentCarta);});
-
-/* Timeline */
-var timelineEl=document.getElementById('timeline');
-if(CONFIG.recuerdos.length===0){
-  var em=document.createElement('div');em.className='memory';
-  em.innerHTML='<div class="memory-date">📸 Próximamente</div><div class="memory-title">Nuestros momentos especiales irán aquí</div><div class="memory-body"><div class="memory-photo placeholder">♥</div><div class="memory-text">Pronto se llenarán de recuerdos...</div></div>';
-  timelineEl.appendChild(em);
-}
-
-/* QUIZ MINI JUEGO */
-var quizAlert=document.getElementById('quizAlert');
-var quizSection=document.getElementById('quizSection');
-var quizOpt1=document.getElementById('quizOpt1');
-var quizOpt2=document.getElementById('quizOpt2');
-var quizOpt3=document.getElementById('quizOpt3');
-var ajiClicks=0;
-
-quizOpt1.addEventListener('click',function(){
-  quizAlert.hidden=false;
-  quizAlert.className='quiz-alert wrong';
-  quizAlert.textContent='❌ Jajaja no, incorrecto. ¡Intenta de nuevo! 😅';
-});
-
-quizOpt2.addEventListener('click',function(){
-  ajiClicks++;
-  quizAlert.hidden=false;
-  if(ajiClicks===1){
-    quizAlert.className='quiz-alert wrong';
-    quizAlert.textContent='❌ Incorrecto... hmm, ¿segura? 🤔';
-  }
-  else if(ajiClicks>=2){
-    quizAlert.className='quiz-alert wrong';
-    quizAlert.textContent='❌ Sigue sin ser... ¡pero mira, apareció otra opción! 👀';
-    quizOpt3.hidden=false;
-    quizOpt3.style.animation='layerAppear 0.5s ease-out both';
-  }
-});
-
-var mamiClicks=0;
-quizOpt3.addEventListener('click',function(){
-  mamiClicks++;
-  quizAlert.hidden=false;
-  if(mamiClicks===1){
-    quizAlert.className='quiz-alert wrong';
-    quizAlert.textContent='❌ Incorrecto también... ¿o sí? 🤨';
-  }
-  else if(mamiClicks>=2){
-    quizAlert.className='quiz-alert success';
-    quizAlert.textContent='✅ No mentira, ¡sí está bien! 😂💖 Ahora una cosa más...';
-    quizOpt1.disabled=true;quizOpt2.disabled=true;quizOpt3.disabled=true;
-    quizOpt1.style.opacity='0.4';quizOpt2.style.opacity='0.4';quizOpt3.style.opacity='0.4';
-
-    setTimeout(function(){
-      quizSection.style.transition='opacity 0.5s, transform 0.5s';
-      quizSection.style.opacity='0';
-      quizSection.style.transform='translateY(-20px)';
-    },1800);
-
-    setTimeout(function(){
-      quizSection.hidden=true;
-      document.getElementById('numberSection').hidden=false;
-      document.getElementById('numberSection').style.animation='layerAppear 0.6s ease-out both';
-      document.getElementById('numberInput').focus();
-    },2500);
-  }
-});
-
-/* NÚMERO SECRETO */
-var numberSection=document.getElementById('numberSection');
-var numberInput=document.getElementById('numberInput');
-var numberBtn=document.getElementById('numberBtn');
-var numberAlert=document.getElementById('numberAlert');
-
-numberBtn.addEventListener('click',checkNumber);
-numberInput.addEventListener('keydown',function(e){if(e.key==='Enter')checkNumber();});
-
-function checkNumber(){
-  var val=numberInput.value.trim();
-  numberAlert.hidden=false;
-  if(val==='7'){
-    numberAlert.className='quiz-alert success';
-    numberAlert.textContent='✅ ¡Correcto! 💖 Aquí va tu sorpresa...';
-    var cancionFinal=document.getElementById('cancionFinal');cancionFinal.play().catch(function(){});
-    numberBtn.disabled=true;numberInput.disabled=true;
-
-    setTimeout(function(){
-      numberSection.style.transition='opacity 0.5s, transform 0.5s';
-      numberSection.style.opacity='0';
-      numberSection.style.transform='translateY(-20px)';
-    },1500);
-
-    setTimeout(function(){
-      numberSection.hidden=true;
-      document.getElementById('finalSection').hidden=false;
-      document.getElementById('finalSection').style.animation='layerAppear 0.8s ease-out both';
-      document.getElementById('finalLetter').textContent=CONFIG.mensajeFinal;
-      document.getElementById('finalSignature').textContent=CONFIG.nombreRemitente;
-      launchConfetti();
-      createHeartBurst();
-    },2200);
-  } else {
-    numberAlert.className='quiz-alert wrong';
-    numberAlert.textContent='❌ Ese no es... ¡piénsalo bien! 😏';
-    numberInput.value='';numberInput.focus();
-  }
-}
-
-/* Mostrar quiz si ya llegó el día o modo admin */
-if(yaLlegoElDia||modoAdmin){
-  quizSection.hidden=false;
-}
-</script>
-</body>
-</html>
+    if(capa.esTextoFinal&&carta.efecto==='typewriter'){card.appendChild(p);setTimeout(function(){typewriterEffect(p,capa.texto);},300
