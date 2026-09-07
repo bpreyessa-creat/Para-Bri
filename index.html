@@ -11,7 +11,7 @@
 <style>
   :root{
     --pink:#E0457B;--pink-dark:#C42D63;--pink-soft:#F06292;--pink-pale:#F8BBD0;
-    --pink-blush:#FCE4EC;--bg:#FFF5F7;--bg-alt:#FFF0F3;--card:#FFFFFF;
+    --pink-blush:#FCE4EC;--bg:#FFF5F7;--bg-alt:#FFF0F3;
     --gray-200:#F3DDE1;--gray-300:#D4B0B8;--gray-400:#A3808A;--gray-500:#7A5A63;
     --gray-600:#5C3D45;--gray-800:#3A1F26;
     --shadow-sm:0 2px 8px -2px rgba(224,69,123,0.1);
@@ -35,7 +35,6 @@
 
   section,header.hero,footer.signoff{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:5rem 1.5rem;}
   .section-intro{max-width:var(--line-len);color:var(--gray-500);opacity:0.85;}
-
   header.hero{text-align:center;padding-top:4.5rem;}
   .envelope-hero{width:min(220px,60vw);aspect-ratio:3/2;margin:0 auto 2.2rem;position:relative;}
   .envelope-hero .env-body{position:absolute;inset:0;background:linear-gradient(145deg,#fff,var(--bg-alt));border:1px solid var(--pink-pale);border-radius:8px;box-shadow:var(--shadow-md);}
@@ -87,7 +86,7 @@
   footer.signoff p{color:var(--gray-400);font-style:italic;}
   footer.signoff .signature-name{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-weight:600;color:var(--pink);margin-top:0.4rem;}
 
-  /* ===== ANIMACIÓN SOBRE ===== */
+  /* SOBRE ANIMACIÓN */
   .envelope-anim-overlay{position:fixed;inset:0;background:rgba(58,31,38,0.6);display:flex;align-items:center;justify-content:center;z-index:60;backdrop-filter:blur(4px);}
   .envelope-anim-overlay[hidden]{display:none;}
   .envelope-anim{width:280px;height:190px;position:relative;perspective:800px;animation:envelopeAppear 0.5s ease-out both;}
@@ -106,65 +105,39 @@
   .heart-particle{position:absolute;font-size:1.2rem;animation:burstOut 1.2s ease-out forwards;}
   @keyframes burstOut{0%{transform:translate(0,0) scale(0);opacity:1;}50%{opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(1);opacity:0;}}
 
-  /* ===== MODAL MULTI-CAPA ===== */
+  /* MODAL MULTI-CAPA */
   .modal-overlay{position:fixed;inset:0;background:rgba(58,31,38,0.55);display:flex;align-items:center;justify-content:center;padding:1rem;z-index:50;backdrop-filter:blur(3px);}
   .modal-overlay[hidden]{display:none;}
-
   .layers-container{max-width:500px;width:100%;max-height:92vh;position:relative;}
-
-  .layer-card{
-    background:#fffaf5;width:100%;
-    padding:2.2rem 1.8rem;border-radius:12px;position:relative;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.4);
-    animation:layerAppear 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-    overflow-y:auto;max-height:88vh;
-  }
+  .layer-card{background:#fffaf5;width:100%;padding:2.2rem 1.8rem;border-radius:12px;position:relative;box-shadow:0 30px 60px -20px rgba(0,0,0,0.4);animation:layerAppear 0.5s cubic-bezier(0.34,1.56,0.64,1) both;overflow-y:auto;max-height:88vh;}
   @keyframes layerAppear{from{transform:translateY(30px) scale(0.92);opacity:0;}to{transform:translateY(0) scale(1);opacity:1;}}
-
   .layer-card h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--pink);font-size:1.5rem;margin:0 0 0.8rem;text-align:center;}
   .layer-card p{font-size:0.95rem;line-height:1.7;text-align:center;color:var(--gray-600);}
   .layer-card .layer-emoji{font-size:3rem;text-align:center;display:block;margin-bottom:0.8rem;}
-
-  .layer-btn{
-    display:block;width:100%;margin-top:1.2rem;padding:0.9rem;
-    background:linear-gradient(135deg,var(--pink),var(--pink-dark));
-    color:#fff;border:none;border-radius:25px;
-    font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;
-    cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;
-    box-shadow:0 4px 15px -5px rgba(224,69,123,0.4);
-  }
+  .layer-btn{display:block;width:100%;margin-top:1.2rem;padding:0.9rem;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;border:none;border-radius:25px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 15px -5px rgba(224,69,123,0.4);}
   .layer-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px -5px rgba(224,69,123,0.5);}
-
   .layer-close{position:absolute;top:0.6rem;right:0.8rem;background:none;border:none;font-size:1.3rem;color:var(--pink);line-height:1;transition:transform 0.2s;}
   .layer-close:hover{transform:rotate(90deg);}
 
-  /* ===== GALERÍA DE FOTOS ===== */
+  /* GALERÍA */
   .gallery-container{position:relative;width:100%;margin:1rem 0;border-radius:10px;overflow:hidden;}
   .gallery-track{display:flex;transition:transform 0.4s ease;width:100%;}
   .gallery-slide{min-width:100%;position:relative;}
   .gallery-slide img{width:100%;max-height:280px;object-fit:cover;display:block;border-radius:8px;border:3px solid #fff;box-shadow:var(--shadow-md);}
   .gallery-slide .slide-caption{text-align:center;font-family:'Caveat',cursive;font-size:1rem;color:var(--pink-dark);margin-top:0.5rem;}
-
   .gallery-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:0.8rem;}
-  .gallery-arrow{
-    width:36px;height:36px;border-radius:50%;border:2px solid var(--pink-pale);
-    background:#fff;color:var(--pink);font-size:1.1rem;
-    display:flex;align-items:center;justify-content:center;cursor:pointer;
-    transition:background 0.2s,transform 0.2s;
-  }
+  .gallery-arrow{width:36px;height:36px;border-radius:50%;border:2px solid var(--pink-pale);background:#fff;color:var(--pink);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,transform 0.2s;}
   .gallery-arrow:hover{background:var(--pink);color:#fff;transform:scale(1.1);}
   .gallery-dots{display:flex;gap:6px;}
   .gallery-dot{width:8px;height:8px;border-radius:50%;background:var(--pink-pale);transition:background 0.3s,transform 0.3s;}
   .gallery-dot.active{background:var(--pink);transform:scale(1.3);}
+  .gallery-counter{text-align:center;font-family:'Caveat',cursive;font-size:0.95rem;color:var(--gray-500);margin-top:0.4rem;}
 
-  /* Typewriter */
   .typewriter-cursor{display:inline-block;width:2px;height:1.1em;background:var(--pink);margin-left:2px;vertical-align:text-bottom;animation:cursorBlink 0.7s step-end infinite;}
   @keyframes cursorBlink{0%,100%{opacity:1;}50%{opacity:0;}}
-
   .modal-song-wrap{text-align:center;margin-top:1rem;animation:fadeSlideUp 0.4s ease-out 0.3s both;}
   @keyframes fadeSlideUp{from{transform:translateY(15px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
-  /* Confetti para la ultima capa */
   .confetti-container{position:fixed;inset:0;pointer-events:none;z-index:80;}
   .confetti-piece{position:absolute;top:-20px;width:10px;height:10px;animation:confettiFall linear forwards;}
   @keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
@@ -226,7 +199,6 @@
   <span class="signature-name" id="footerSignature"></span>
 </footer>
 
-<!-- Animación sobre -->
 <div class="envelope-anim-overlay" id="envelopeAnimOverlay" hidden>
   <div class="envelope-anim" id="envelopeAnim">
     <div class="env-anim-body"></div>
@@ -237,7 +209,6 @@
   </div>
 </div>
 
-<!-- Modal multi-capa -->
 <div class="modal-overlay" id="modalOverlay" hidden>
   <div class="layers-container" id="layersContainer"></div>
 </div>
@@ -256,7 +227,6 @@ var CONFIG = {
       titulo:"Feliz aniversario, mi amor 💕",
       efecto:"typewriter",
       cancion:"https://www.youtube.com/watch?v=pD8mxge6kek",
-      /* CAPAS — como abrir carta dentro de carta */
       capas:[
         {
           emoji:"💌",
@@ -275,39 +245,44 @@ var CONFIG = {
           titulo:"Feliz aniversario, mi amor",
           texto:"Brigith, hoy es nuestro día. El día que mi vida cambió por completo. Desde aquel momento, cada día a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos más. Te adoro mi princesita hermosa Bri Blanquita Yllarita 💖",
           boton:"Ver nuestras fotos 📸",
-          esTextoFinal: true
+          esTextoFinal:true
         },
         {
           tipo:"galeria",
           titulo:"Nuestros momentos 📸",
-          /* AGREGA AQUÍ TUS FOTOS - cambia los links y textos */
           fotos:[
-            { src:"https://i.imgur.com/r88VvUD.jpeg", caption:"Nosotros 💕" }
-            /* Agrega más fotos así:
-            ,{ src:"https://i.imgur.com/XXXXX.jpeg", caption:"Texto de la foto" }
-            ,{ src:"https://i.imgur.com/YYYYY.jpeg", caption:"Otro momento" }
-            */
+            { src:"https://i.imgur.com/r88VvUD.jpeg", caption:"Nuestros momentos 💕" },
+            { src:"https://i.imgur.com/Ntwkfdt.jpeg", caption:"" },
+            { src:"https://i.imgur.com/k24tj0M.jpeg", caption:"" },
+            { src:"https://i.imgur.com/lz8DP28.jpeg", caption:"" },
+            { src:"https://i.imgur.com/QZZoWQ1.jpeg", caption:"" },
+            { src:"https://i.imgur.com/orVdbmi.jpeg", caption:"" },
+            { src:"https://i.imgur.com/ScX2QEk.jpeg", caption:"" },
+            { src:"https://i.imgur.com/vNrte4R.jpeg", caption:"" },
+            { src:"https://i.imgur.com/fLuMKcc.jpeg", caption:"" },
+            { src:"https://i.imgur.com/SL568jP.jpeg", caption:"" },
+            { src:"https://i.imgur.com/tcBCu4D.jpeg", caption:"" }
           ],
-          boton: null
+          boton:null
         }
       ]
     },
-    { fecha:"2026-09-09", titulo:"Lo que más amo de ti 🌹", capas:[{emoji:"🌹",titulo:"Lo que más amo de ti",texto:"¿Sabes qué es lo que más amo de ti? Tu forma de reír, esa risa que me contagia y me hace sentir que todo está bien. Amo tu manera de mirarme, como si yo fuera lo más importante del mundo. Amo tu paciencia, tu cariño, tu fuerza. Amo cada detalle tuyo, incluso los que tú no ves. Para mí, eres perfecta. 🌹",boton:null}], foto:"", cancion:"", efecto:"" },
-    { fecha:"2026-09-10", titulo:"Un recuerdo que guardo en el corazón 📸", capas:[{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸",boton:null}], foto:"", cancion:"", efecto:"" },
-    { fecha:"2026-09-11", titulo:"Lo que admiro de ti ⭐", capas:[{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐",boton:null}], foto:"", cancion:"", efecto:"" },
-    { fecha:"2026-09-12", titulo:"Mis promesas para ti 🤝", capas:[{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝",boton:null}], foto:"", cancion:"", efecto:"" },
-    { fecha:"2026-09-13", titulo:"Nuestros momentos 😄", capas:[{emoji:"😄",titulo:"Nuestros momentos",texto:"¿Te acuerdas de todas esas veces que nos reímos hasta que nos dolió el estómago? ¿De las conversaciones largas que no queríamos terminar? ¿De los silencios cómodos donde no hacía falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo más simple se vuelve especial. 😄",boton:null}], foto:"", cancion:"", efecto:"" },
-    { fecha:"2026-09-14", titulo:"Para siempre 💖", capas:[{emoji:"💖",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mí. Pero la verdad es que ninguna palabra es suficiente. Tú eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tú. Te amo hoy, mañana y siempre. Este es solo un aniversario más de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. 💖",boton:null}], foto:"", cancion:"", efecto:"" }
+    { fecha:"2026-09-09", titulo:"Lo que más amo de ti 🌹", cancion:"", efecto:"", capas:[{emoji:"🌹",titulo:"Lo que más amo de ti",texto:"¿Sabes qué es lo que más amo de ti? Tu forma de reír, esa risa que me contagia y me hace sentir que todo está bien. Amo tu manera de mirarme, como si yo fuera lo más importante del mundo. Amo tu paciencia, tu cariño, tu fuerza. Amo cada detalle tuyo, incluso los que tú no ves. Para mí, eres perfecta. 🌹",boton:null}] },
+    { fecha:"2026-09-10", titulo:"Un recuerdo que guardo en el corazón 📸", cancion:"", efecto:"", capas:[{emoji:"📸",titulo:"Un recuerdo que guardo en el corazón",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que quería estar. No necesité más señales, solo bastó verte, sentirte cerca, y saber que contigo todo tenía sentido. Ese recuerdo lo guardo como un tesoro. 📸",boton:null}] },
+    { fecha:"2026-09-11", titulo:"Lo que admiro de ti ⭐", cancion:"", efecto:"", capas:[{emoji:"⭐",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuánto te admiro. Admiro tu valentía para enfrentar cada día, tu dedicación, tu forma de cuidar a quienes amas. Eres una mujer increíble, fuerte y llena de luz. El mundo es mejor porque tú estás en él, y mi mundo es mejor porque tú estás conmigo. ⭐",boton:null}] },
+    { fecha:"2026-09-12", titulo:"Mis promesas para ti 🤝", cancion:"", efecto:"", capas:[{emoji:"🤝",titulo:"Mis promesas para ti",texto:"Hoy no te escribo solo palabras bonitas, te escribo promesas. Te prometo estar ahí cuando me necesites, en los días buenos y en los difíciles. Te prometo esforzarme cada día por hacerte feliz. Te prometo que vamos a cumplir cada sueño que hemos imaginado juntos. Esto apenas comienza, mi amor. 🤝",boton:null}] },
+    { fecha:"2026-09-13", titulo:"Nuestros momentos 😄", cancion:"", efecto:"", capas:[{emoji:"😄",titulo:"Nuestros momentos",texto:"¿Te acuerdas de todas esas veces que nos reímos hasta que nos dolió el estómago? ¿De las conversaciones largas que no queríamos terminar? ¿De los silencios cómodos donde no hacía falta decir nada? Esos momentos son mi parte favorita de nosotros. Contigo hasta lo más simple se vuelve especial. 😄",boton:null}] },
+    { fecha:"2026-09-14", titulo:"Para siempre 💖", cancion:"", efecto:"", capas:[{emoji:"💖",titulo:"Para siempre",texto:"Brigith, esta semana quise demostrarte un poquito de todo lo que significas para mí. Pero la verdad es que ninguna palabra es suficiente. Tú eres mi paz, mi felicidad, mi persona favorita. Gracias por elegirme, por amarme, por ser tú. Te amo hoy, mañana y siempre. Este es solo un aniversario más de los muchos que nos faltan por vivir juntos. Con todo mi amor, Paolo. 💖",boton:null}] }
   ],
   recuerdos:[]
 };
 
-/* --- Admin --- */
+/* Admin */
 var urlParams=new URLSearchParams(window.location.search);
 var modoAdmin=urlParams.get('clave')==='paolo';
 if(modoAdmin){document.getElementById('adminBanner').hidden=false;document.body.style.paddingTop='32px';}
 
-/* --- Utils --- */
+/* Utils */
 function parseLocalDate(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
 function startOfToday(){var n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());}
 function formatDayMonth(d){return d.toLocaleDateString('es-ES',{day:'numeric',month:'long'});}
@@ -323,7 +298,7 @@ document.getElementById('heroFrase').textContent=CONFIG.fraseHero;
 document.getElementById('footerSignature').textContent=CONFIG.nombreRemitente;
 document.getElementById('heroSeal').textContent=(CONFIG.nombreRemitente||'?').trim().charAt(0).toUpperCase()||'♥';
 
-/* --- Countdown --- */
+/* Countdown */
 var countdownEl=document.getElementById('countdown');
 function renderCountdown(){
   var now=new Date(),target=new Date(fechaAniversario.getFullYear(),fechaAniversario.getMonth(),fechaAniversario.getDate(),0,0,0),diff=target-now;
@@ -333,7 +308,7 @@ function renderCountdown(){
 }
 renderCountdown();if(!modoAdmin)setInterval(renderCountdown,1e3);
 
-/* --- Clothesline --- */
+/* Clothesline */
 var clothesline=document.getElementById('clothesline');
 var cartasOrdenadas=[].concat(CONFIG.cartas).sort(function(a,b){return parseLocalDate(a.fecha)-parseLocalDate(b.fecha);});
 cartasOrdenadas.forEach(function(carta){
@@ -348,7 +323,7 @@ cartasOrdenadas.forEach(function(carta){
   item.appendChild(cap);clothesline.appendChild(item);
 });
 
-/* --- Envelope Animation --- */
+/* Envelope Animation */
 var envelopeAnimOverlay=document.getElementById('envelopeAnimOverlay');
 var envAnimFlap=document.getElementById('envAnimFlap');
 var envAnimSeal=document.getElementById('envAnimSeal');
@@ -376,7 +351,7 @@ function createHeartBurst(){
   setTimeout(function(){c.remove();},1500);
 }
 
-/* ===== MODAL MULTI-CAPA ===== */
+/* Modal Multi-Capa */
 var modalOverlay=document.getElementById('modalOverlay');
 var layersContainer=document.getElementById('layersContainer');
 var typewriterInterval=null;
@@ -384,30 +359,22 @@ var currentGalleryIndex=0;
 
 function openLayeredLetter(carta){
   layersContainer.innerHTML='';
-  if(carta.capas&&carta.capas.length>0){
-    showLayer(carta,0);
-  } else {
-    showSimpleCard(carta);
-  }
+  if(carta.capas&&carta.capas.length>0){showLayer(carta,0);}
+  else{showSimpleCard(carta);}
   modalOverlay.hidden=false;
 }
 
 function showLayer(carta,index){
   var capa=carta.capas[index];
   layersContainer.innerHTML='';
+  if(typewriterInterval){clearInterval(typewriterInterval);typewriterInterval=null;}
 
-  var card=document.createElement('div');
-  card.className='layer-card';
-
-  var closeBtn=document.createElement('button');
-  closeBtn.className='layer-close';closeBtn.textContent='✕';
-  closeBtn.addEventListener('click',closeModal);
-  card.appendChild(closeBtn);
+  var card=document.createElement('div');card.className='layer-card';
+  var closeBtn=document.createElement('button');closeBtn.className='layer-close';closeBtn.textContent='✕';
+  closeBtn.addEventListener('click',closeModal);card.appendChild(closeBtn);
 
   if(capa.tipo==='galeria'){
-    /* GALERÍA DE FOTOS */
     var h3=document.createElement('h3');h3.textContent=capa.titulo;card.appendChild(h3);
-
     var galContainer=document.createElement('div');galContainer.className='gallery-container';
     var track=document.createElement('div');track.className='gallery-track';
     currentGalleryIndex=0;
@@ -416,46 +383,44 @@ function showLayer(carta,index){
       var slide=document.createElement('div');slide.className='gallery-slide';
       var img=document.createElement('img');img.src=foto.src;img.alt=foto.caption||'';
       slide.appendChild(img);
-      if(foto.caption){var cap=document.createElement('div');cap.className='slide-caption';cap.textContent=foto.caption;slide.appendChild(cap);}
+      if(foto.caption){var cp=document.createElement('div');cp.className='slide-caption';cp.textContent=foto.caption;slide.appendChild(cp);}
       track.appendChild(slide);
     });
-    galContainer.appendChild(track);
-    card.appendChild(galContainer);
+    galContainer.appendChild(track);card.appendChild(galContainer);
+
+    /* Counter */
+    var counter=document.createElement('div');counter.className='gallery-counter';counter.id='galleryCounter';
+    counter.textContent='1 / '+capa.fotos.length;card.appendChild(counter);
 
     if(capa.fotos.length>1){
       var nav=document.createElement('div');nav.className='gallery-nav';
       var leftArr=document.createElement('button');leftArr.className='gallery-arrow';leftArr.textContent='‹';
       var rightArr=document.createElement('button');rightArr.className='gallery-arrow';rightArr.textContent='›';
       var dots=document.createElement('div');dots.className='gallery-dots';
-      for(var d=0;d<capa.fotos.length;d++){
-        var dot=document.createElement('div');dot.className='gallery-dot'+(d===0?' active':'');dots.appendChild(dot);
-      }
-      nav.appendChild(leftArr);nav.appendChild(dots);nav.appendChild(rightArr);
-      card.appendChild(nav);
+      for(var d=0;d<capa.fotos.length;d++){var dot=document.createElement('div');dot.className='gallery-dot'+(d===0?' active':'');dots.appendChild(dot);}
+      nav.appendChild(leftArr);nav.appendChild(dots);nav.appendChild(rightArr);card.appendChild(nav);
 
       leftArr.addEventListener('click',function(){
         currentGalleryIndex=Math.max(0,currentGalleryIndex-1);
-        updateGallery(track,dots);
+        updateGallery(track,dots,capa.fotos.length);
       });
       rightArr.addEventListener('click',function(){
         currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);
-        updateGallery(track,dots);
+        updateGallery(track,dots,capa.fotos.length);
       });
 
-      /* Swipe en móvil */
       var touchStartX=0;
       galContainer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;},{passive:true});
       galContainer.addEventListener('touchend',function(e){
         var diff=touchStartX-e.changedTouches[0].clientX;
         if(Math.abs(diff)>40){
-          if(diff>0) currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);
+          if(diff>0)currentGalleryIndex=Math.min(capa.fotos.length-1,currentGalleryIndex+1);
           else currentGalleryIndex=Math.max(0,currentGalleryIndex-1);
-          updateGallery(track,dots);
+          updateGallery(track,dots,capa.fotos.length);
         }
       },{passive:true});
     }
 
-    /* Canción en la galería */
     if(carta.cancion){
       var songWrap=document.createElement('div');songWrap.className='modal-song-wrap';
       var ytId=extractYouTubeId(carta.cancion);
@@ -468,29 +433,19 @@ function showLayer(carta,index){
       }
       card.appendChild(songWrap);
     }
-
     launchConfetti();
 
   } else {
-    /* CAPA DE TEXTO */
-    var emoji=document.createElement('span');emoji.className='layer-emoji';emoji.textContent=capa.emoji||'💌';
-    card.appendChild(emoji);
+    var emoji=document.createElement('span');emoji.className='layer-emoji';emoji.textContent=capa.emoji||'💌';card.appendChild(emoji);
     var h3=document.createElement('h3');h3.textContent=capa.titulo;card.appendChild(h3);
     var p=document.createElement('p');p.id='layerText';
-    if(capa.esTextoFinal&&carta.efecto==='typewriter'){
-      card.appendChild(p);
-      setTimeout(function(){typewriterEffect(p,capa.texto);},300);
-    } else {
-      p.textContent=capa.texto;card.appendChild(p);
-    }
-
+    if(capa.esTextoFinal&&carta.efecto==='typewriter'){card.appendChild(p);setTimeout(function(){typewriterEffect(p,capa.texto);},300);}
+    else{p.textContent=capa.texto;card.appendChild(p);}
     if(capa.boton&&index<carta.capas.length-1){
       var btn=document.createElement('button');btn.className='layer-btn';btn.textContent=capa.boton;
-      btn.addEventListener('click',function(){showLayer(carta,index+1);});
-      card.appendChild(btn);
+      btn.addEventListener('click',function(){showLayer(carta,index+1);});card.appendChild(btn);
     }
   }
-
   layersContainer.appendChild(card);
 }
 
@@ -501,15 +456,16 @@ function showSimpleCard(carta){
   var emoji=document.createElement('span');emoji.className='layer-emoji';emoji.textContent='💌';card.appendChild(emoji);
   var h3=document.createElement('h3');h3.textContent=carta.titulo;card.appendChild(h3);
   var p=document.createElement('p');
-  if(carta.capas&&carta.capas[0]){p.textContent=carta.capas[0].texto;}
-  card.appendChild(p);
-  layersContainer.appendChild(card);
+  if(carta.capas&&carta.capas[0])p.textContent=carta.capas[0].texto;
+  card.appendChild(p);layersContainer.appendChild(card);
 }
 
-function updateGallery(track,dotsContainer){
+function updateGallery(track,dotsContainer,total){
   track.style.transform='translateX(-'+currentGalleryIndex*100+'%)';
   var allDots=dotsContainer.querySelectorAll('.gallery-dot');
   for(var i=0;i<allDots.length;i++){allDots[i].className='gallery-dot'+(i===currentGalleryIndex?' active':'');}
+  var counter=document.getElementById('galleryCounter');
+  if(counter)counter.textContent=(currentGalleryIndex+1)+' / '+total;
 }
 
 function extractYouTubeId(url){var m=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);return m?m[1]:null;}
@@ -529,12 +485,10 @@ function launchConfetti(){
   var colors=['#E0457B','#F06292','#F8BBD0','#FCE4EC','#C42D63','#ff6b9d','#ffa5c3'];
   for(var i=0;i<40;i++){
     var p=document.createElement('div');p.className='confetti-piece';
-    p.style.left=Math.random()*100+'%';
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=Math.random()*100+'%';p.style.background=colors[Math.floor(Math.random()*colors.length)];
     p.style.width=(6+Math.random()*8)+'px';p.style.height=(6+Math.random()*8)+'px';
     p.style.borderRadius=Math.random()>0.5?'50%':'2px';
-    p.style.animationDuration=(2+Math.random()*3)+'s';
-    p.style.animationDelay=Math.random()*0.8+'s';
+    p.style.animationDuration=(2+Math.random()*3)+'s';p.style.animationDelay=Math.random()*0.8+'s';
     c.appendChild(p);
   }
   setTimeout(function(){c.remove();},5000);
@@ -548,7 +502,7 @@ function closeModal(){
 modalOverlay.addEventListener('click',function(e){if(e.target===modalOverlay)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
-/* --- Timeline --- */
+/* Timeline */
 var timelineEl=document.getElementById('timeline');
 if(CONFIG.recuerdos.length===0){
   var em=document.createElement('div');em.className='memory';
@@ -556,7 +510,7 @@ if(CONFIG.recuerdos.length===0){
   timelineEl.appendChild(em);
 }
 
-/* --- Final --- */
+/* Final */
 if(yaLlegoElDia||modoAdmin){
   document.getElementById('finalSection').hidden=false;
   document.getElementById('finalLetter').textContent=CONFIG.mensajeFinal;
