@@ -195,6 +195,13 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 <input type="number" id="numberInput" placeholder="Escribe el número..." style="display:block;width:100%;padding:1rem;margin:.8rem 0;border:2px solid var(--pkp);border-radius:12px;font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;color:var(--pkd);background:#fff;outline:none">
 <button class="qo" id="numberBtn" style="background:linear-gradient(135deg,var(--pk),var(--pkd));color:#fff;border:none;font-weight:600">Desbloquear 💖</button>
 <div class="qa" id="numberAlert" hidden></div>
+</section>  
+<section class="qs" id="finalNumSection" hidden>
+<span class="qe">💕</span><h2>¡Última pregunta!</h2>
+<p class="qq">¿Cuántos meses cumplimos hoy? 🥺</p>
+<input type="number" id="finalNumInput" placeholder="Escribe el número..." style="display:block;width:100%;padding:1rem;margin:.8rem 0;border:2px solid var(--pkp);border-radius:12px;font-family:'Caveat',cursive;font-size:1.5rem;text-align:center;color:var(--pkd);background:#fff;outline:none">
+<button class="qo" id="finalNumBtn" style="background:linear-gradient(135deg,var(--pk),var(--pkd));color:#fff;border:none;font-weight:600">Desbloquear 💖</button>
+<div class="qa" id="finalNumAlert" hidden></div>
 </section>
 <section class="fs" id="finalSection" hidden>
 <h2>Feliz aniversario</h2>
@@ -441,25 +448,42 @@ setTimeout(function(){qS.hidden=true;
 document.getElementById('numberSection').hidden=false;
 document.getElementById('numberSection').style.animation='la .6s ease-out both';
 document.getElementById('numberInput').focus();},2500);}});
+
 var nI=document.getElementById('numberInput'),nB=document.getElementById('numberBtn');
 var nA=document.getElementById('numberAlert');
 function chN(){var v=nI.value.trim();nA.hidden=false;
-if(v==='7'){nA.className='qa s';nA.textContent='✅ ¡Correcto! 💖 Aquí va tu sorpresa...';
+if(v==='7'){nA.className='qa s';nA.textContent='✅ ¡Correcto! 💖 Pero falta una más...';
 nB.disabled=true;nI.disabled=true;
-var cf=document.getElementById('cancionFinal');cf.play().catch(function(){});
 setTimeout(function(){var ns=document.getElementById('numberSection');
 ns.style.transition='opacity .5s,transform .5s';ns.style.opacity='0';
 ns.style.transform='translateY(-20px)';},1500);
 setTimeout(function(){document.getElementById('numberSection').hidden=true;
+var fs=document.getElementById('finalNumSection');fs.hidden=false;
+fs.style.animation='la .6s ease-out both';
+document.getElementById('finalNumInput').focus();},2200);
+}else{nA.className='qa w';nA.textContent='❌ Ese no es... ¡piénsalo bien! 😏';
+nI.value='';nI.focus();}}
+nB.addEventListener('click',chN);
+nI.addEventListener('keydown',function(e){if(e.key==='Enter')chN();});
+var fnI=document.getElementById('finalNumInput'),fnB=document.getElementById('finalNumBtn');
+var fnA=document.getElementById('finalNumAlert');
+function chFN(){var v=fnI.value.trim();fnA.hidden=false;
+if(v==='8'){fnA.className='qa s';fnA.textContent='✅ ¡8 meses juntos! 🥺💖 Aquí va tu sorpresa...';
+fnB.disabled=true;fnI.disabled=true;
+var cf=document.getElementById('cancionFinal');cf.play().catch(function(){});
+setTimeout(function(){var ns=document.getElementById('finalNumSection');
+ns.style.transition='opacity .5s,transform .5s';ns.style.opacity='0';
+ns.style.transform='translateY(-20px)';},1500);
+setTimeout(function(){document.getElementById('finalNumSection').hidden=true;
 var fs=document.getElementById('finalSection');fs.hidden=false;
 fs.style.animation='la .8s ease-out both';
 document.getElementById('finalLetter').textContent=C.mf;
 document.getElementById('finalSignature').textContent=C.r;
 conf();hBurst();},2200);
-}else{nA.className='qa w';nA.textContent='❌ Ese no es... ¡piénsalo bien! 😏';
-nI.value='';nI.focus();}}
-nB.addEventListener('click',chN);
-nI.addEventListener('keydown',function(e){if(e.key==='Enter')chN();});
+}else{fnA.className='qa w';fnA.textContent='❌ No es ese... piensa en nosotros 💕';
+fnI.value='';fnI.focus();}}
+fnB.addEventListener('click',chFN);
+fnI.addEventListener('keydown',function(e){if(e.key==='Enter')chFN();});
 if(ya||adm)qS.hidden=false;
 </script>
 </body>
