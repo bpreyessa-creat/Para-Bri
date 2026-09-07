@@ -133,6 +133,41 @@
   .gallery-dot.active{background:var(--pink);transform:scale(1.3);}
   .gallery-counter{text-align:center;font-family:'Caveat',cursive;font-size:0.95rem;color:var(--gray-500);margin-top:0.4rem;}
 
+  /* REPRODUCTOR DE MÚSICA FLOTANTE */
+  .music-player{
+    position:fixed;bottom:20px;right:20px;z-index:90;
+    display:flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,var(--pink),var(--pink-dark));
+    padding:10px 16px;border-radius:30px;
+    box-shadow:0 8px 25px -5px rgba(224,69,123,0.5);
+    animation:playerSlideIn 0.5s ease-out both;
+    cursor:pointer;
+    transition:transform 0.2s;
+  }
+  .music-player:hover{transform:scale(1.05);}
+  .music-player[hidden]{display:none;}
+  @keyframes playerSlideIn{from{transform:translateY(60px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .music-player .music-icon{
+    font-size:1.3rem;color:#fff;
+    animation:musicPulse 1s ease-in-out infinite;
+  }
+  @keyframes musicPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+  .music-player .music-text{
+    font-family:'Caveat',cursive;font-size:0.95rem;color:#fff;
+    white-space:nowrap;
+  }
+  .music-player .music-pause{
+    font-size:0.9rem;color:rgba(255,255,255,0.8);
+  }
+
+  /* YouTube iframe oculto */
+  .yt-hidden{
+    position:fixed;bottom:0;left:0;
+    width:1px;height:1px;
+    opacity:0;pointer-events:none;
+    z-index:-1;
+  }
+
   .typewriter-cursor{display:inline-block;width:2px;height:1.1em;background:var(--pink);margin-left:2px;vertical-align:text-bottom;animation:cursorBlink 0.7s step-end infinite;}
   @keyframes cursorBlink{0%,100%{opacity:1;}50%{opacity:0;}}
   .modal-song-wrap{text-align:center;margin-top:1rem;animation:fadeSlideUp 0.4s ease-out 0.3s both;}
@@ -150,6 +185,7 @@
     .env-anim-flap{border-left:110px solid transparent;border-right:110px solid transparent;border-top:80px solid var(--pink-pale);}
     .letter-pull{left:15px;right:15px;height:125px;}
     .layer-card{padding:1.6rem 1.2rem;}
+    .music-player{bottom:12px;right:12px;padding:8px 12px;}
   }
 </style>
 </head>
@@ -213,6 +249,19 @@
   <div class="layers-container" id="layersContainer"></div>
 </div>
 
+<!-- Reproductor flotante -->
+<div class="music-player" id="musicPlayer" hidden>
+  <span class="music-icon">♫</span>
+  <span class="music-text">Nuestra canción</span>
+  <span class="music-pause" id="musicToggleIcon">⏸</span>
+</div>
+
+<!-- YouTube iframe oculto para audio -->
+<div class="yt-hidden" id="ytHidden"></div>
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
 var CONFIG = {
   nombreDestinataria:"Brigith",
@@ -245,7 +294,8 @@ var CONFIG = {
           titulo:"Feliz aniversario, mi amor",
           texto:"Brigith, hoy es nuestro día. El día que mi vida cambió por completo. Desde aquel momento, cada día a tu lado ha sido un regalo precioso, muchas experiencias y felicidad. Feliz aniversario, mi amor. Esto es solo el comienzo de muchos más. Te adoro mi princesita hermosa Bri Blanquita Yllarita 💖",
           boton:"Ver nuestras fotos 📸",
-          esTextoFinal:true
+          esTextoFinal:true,
+          iniciarMusica:true
         },
         {
           tipo:"galeria",
@@ -351,6 +401,72 @@ function createHeartBurst(){
   setTimeout(function(){c.remove();},1500);
 }
 
+/* ===== REPRODUCTOR DE MÚSICA CON YOUTUBE API ===== */
+var ytPlayer=null;
+var musicPlaying=false;
+var musicPlayerEl=document.getElementById('musicPlayer');
+var musicToggleIcon=document.getElementById('musicToggleIcon');
+
+/* Cuando la API de YouTube está lista */
+function onYouTubeIframeAPIReady(){
+  /* API lista, el player se crea cuando se necesite */
+}
+
+function startMusic(videoId){
+  if(ytPlayer){
+    ytPlayer.playVideo();
+    musicPlaying=true;
+    musicPlayerEl.hidden=false;
+    musicToggleIcon.textContent='⏸';
+    return;
+  }
+
+  ytPlayer=new YT.Player('ytHidden',{
+    height:'1',
+    width:'1',
+    videoId:videoId,
+    playerVars:{
+      autoplay:1,
+      loop:1,
+      playlist:videoId,
+      controls:0,
+      disablekb:1,
+      fs:0,
+      modestbranding:1,
+      rel:0,
+      playsinline:1
+    },
+    events:{
+      onReady:function(event){
+        event.target.playVideo();
+        musicPlaying=true;
+        musicPlayerEl.hidden=false;
+        musicToggleIcon.textContent='⏸';
+      },
+      onStateChange:function(event){
+        if(event.data===YT.PlayerState.PLAYING){
+          musicPlaying=true;
+          musicToggleIcon.textContent='⏸';
+        }
+      }
+    }
+  });
+}
+
+function stopMusic(){
+  if(ytPlayer){
+    ytPlayer.pauseVideo();
+    musicPlaying=false;
+    musicToggleIcon.textContent='▶';
+  }
+}
+
+/* Toggle play/pause */
+musicPlayerEl.addEventListener('click',function(){
+  if(musicPlaying){stopMusic();}
+  else if(ytPlayer){ytPlayer.playVideo();musicPlaying=true;musicToggleIcon.textContent='⏸';}
+});
+
 /* Modal Multi-Capa */
 var modalOverlay=document.getElementById('modalOverlay');
 var layersContainer=document.getElementById('layersContainer');
@@ -388,7 +504,6 @@ function showLayer(carta,index){
     });
     galContainer.appendChild(track);card.appendChild(galContainer);
 
-    /* Counter */
     var counter=document.createElement('div');counter.className='gallery-counter';counter.id='galleryCounter';
     counter.textContent='1 / '+capa.fotos.length;card.appendChild(counter);
 
@@ -420,19 +535,6 @@ function showLayer(carta,index){
         }
       },{passive:true});
     }
-
-    if(carta.cancion){
-      var songWrap=document.createElement('div');songWrap.className='modal-song-wrap';
-      var ytId=extractYouTubeId(carta.cancion);
-      if(ytId){
-        var iframe=document.createElement('iframe');iframe.width='100%';iframe.height='80';
-        iframe.src='https://www.youtube.com/embed/'+ytId+'?autoplay=1';
-        iframe.allow='autoplay; encrypted-media';iframe.setAttribute('allowfullscreen','');
-        iframe.style.border='none';iframe.style.borderRadius='8px';iframe.style.marginTop='1rem';
-        songWrap.appendChild(iframe);
-      }
-      card.appendChild(songWrap);
-    }
     launchConfetti();
 
   } else {
@@ -441,9 +543,18 @@ function showLayer(carta,index){
     var p=document.createElement('p');p.id='layerText';
     if(capa.esTextoFinal&&carta.efecto==='typewriter'){card.appendChild(p);setTimeout(function(){typewriterEffect(p,capa.texto);},300);}
     else{p.textContent=capa.texto;card.appendChild(p);}
+
     if(capa.boton&&index<carta.capas.length-1){
       var btn=document.createElement('button');btn.className='layer-btn';btn.textContent=capa.boton;
-      btn.addEventListener('click',function(){showLayer(carta,index+1);});card.appendChild(btn);
+      btn.addEventListener('click',function(){
+        /* Si esta capa dice iniciar música, la iniciamos con el click del usuario */
+        if(capa.iniciarMusica&&carta.cancion){
+          var ytId=extractYouTubeId(carta.cancion);
+          if(ytId) startMusic(ytId);
+        }
+        showLayer(carta,index+1);
+      });
+      card.appendChild(btn);
     }
   }
   layersContainer.appendChild(card);
@@ -498,6 +609,7 @@ function closeModal(){
   modalOverlay.hidden=true;
   if(typewriterInterval){clearInterval(typewriterInterval);typewriterInterval=null;}
   layersContainer.innerHTML='';
+  /* NO paramos la música al cerrar — sigue sonando de fondo */
 }
 modalOverlay.addEventListener('click',function(e){if(e.target===modalOverlay)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
@@ -519,3 +631,4 @@ if(yaLlegoElDia||modoAdmin){
 </script>
 </body>
 </html>
+
