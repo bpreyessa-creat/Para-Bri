@@ -442,22 +442,22 @@ lC.innerHTML='';if(ct&&ct.musica)sm();}
 mO.addEventListener('click',function(e){if(e.target===mO)cM(cC);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cM(cC);});
 var tlEl=document.getElementById('timeline');
-var emm=document.createElement('div');emm.className='mem';
-emm.innerHTML='<div style="font-family:Cormorant Garamond,serif;font-style:italic;color:#E0457B;font-size:1.05rem">📸</div><div style="font-family:Cormorant Garamond,serif;font-weight:600;font-size:1.4rem;color:#3A1F26;margin-bottom:.4rem">Nuestros momentos especiales</div><div style="display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap"><div style="width:96px;height:96px;flex-shrink:0;background:#FCE4EC;border:4px solid #fff;box-shadow:0 8px 24px -8px rgba(224,69,123,.12);transform:rotate(-2deg);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#E0457B;font-size:1.6rem">♥</div><div style="flex:1;min-width:200px;color:#7A5A63">Pronto se llenarán de recuerdos...</div></div>';
-tlEl.appendChild(emm);
 var qA=document.getElementById('quizAlert'),qS=document.getElementById('quizSection');
 var q1=document.getElementById('quizOpt1'),q2=document.getElementById('quizOpt2'),q3=document.getElementById('quizOpt3');
 var ac=0,mc=0;
+
 q1.addEventListener('click',function(){qA.hidden=false;qA.className='qa w';
 qA.textContent='❌ Jajaja no, incorrecto. ¡Intenta de nuevo! 😅';});
-q2.addEventListener('click',function(){ac++;qA.hidden=false;
-if(ac===1){qA.className='qa w';qA.textContent='❌ Incorrecto... hmm, ¿segura? 🤔';}
-else if(ac>=2){qA.className='qa w';
-qA.textContent='❌ Sigue sin ser... ¡pero mira, apareció otra opción! 👀';
+var ac2=0;
+q2.addEventListener('click',function(){ac2++;qA.hidden=false;
+if(ac2===1){qA.className='qa w';qA.textContent='❌ Incorrecto... hmm, ¿segura? 🤔';}
+else if(ac2>=2){qA.className='qa w';
+qA.textContent='❌ Sigue sin ser... ¡pero mira, apareció una nueva opción! 👀';
 q3.hidden=false;q3.style.animation='la .5s ease-out both';}});
-q3.addEventListener('click',function(){mc++;qA.hidden=false;
-if(mc===1){qA.className='qa w';qA.textContent='❌ Incorrecto también... ¿o sí? 🤨';}
-else if(mc>=2){qA.className='qa s';
+var mc3=0;
+q3.addEventListener('click',function(){mc3++;qA.hidden=false;
+if(mc3===1){qA.className='qa w';qA.textContent='❌ Incorrecto también... ¿o sí? 🤨';}
+else if(mc3>=2){qA.className='qa s';
 qA.textContent='✅ No mentira, ¡sí está bien! 😂💖 Ahora una cosa más...';
 q1.disabled=true;q2.disabled=true;q3.disabled=true;
 q1.style.opacity='.4';q2.style.opacity='.4';q3.style.opacity='.4';
