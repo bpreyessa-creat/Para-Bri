@@ -16,9 +16,9 @@ h1,h2,.sig{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--pk
 h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.05}
 h2{font-size:clamp(1.7rem,4vw,2.4rem);font-style:italic;font-weight:500;color:var(--g8)}
 p{margin:0 0 1em}button{font-family:inherit;cursor:pointer}
-.splash{position:fixed;inset:0;z-index:200;background:var(--bg);background-image:radial-gradient(circle at 50% 50%,rgba(224,69,123,.08),transparent 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,transform .8s}
+ .splash{position:fixed;inset:0;z-index:200;background:var(--bg);background-image:radial-gradient(circle at 50% 50%,rgba(224,69,123,.08),transparent 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,transform .8s;overflow-y:auto;overflow-x:hidden;padding:2rem 1rem}
 .splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}.splash[hidden]{display:none}
-.senv-wrap{position:relative;width:280px;height:200px;margin:0 auto;animation:sf 3s ease-in-out infinite}
+ .senv-wrap{position:relative;width:280px;height:200px;margin:0 auto;animation:sf 3s ease-in-out infinite;flex-shrink:0}
 @keyframes sf{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .senv-real{width:280px;height:180px;position:absolute;bottom:0;left:0;perspective:800px;cursor:pointer}
 .sr-body{position:absolute;inset:0;background:linear-gradient(145deg,#fff,#fff5f8);border:2px solid var(--pkp);border-radius:10px;box-shadow:0 20px 50px -10px rgba(224,69,123,.3);z-index:2}
@@ -151,6 +151,33 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 .cc{position:fixed;inset:0;pointer-events:none;z-index:80}
 .cp{position:absolute;top:-20px;width:10px;height:10px;animation:cf linear forwards}
 @keyframes cf{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+  
+@media(max-height:700px){
+.splash{padding:1rem .5rem}
+.stit{font-size:1.5rem;margin-top:1rem}
+.shint{margin-top:.4rem}
+.scd{margin-top:.8rem;padding:.8rem 1.2rem}
+.scd .num{font-size:1.4rem}
+.sbtn{margin-top:.8rem;padding:.7rem 2rem;font-size:1rem}
+.senv-wrap{width:220px;height:160px}
+.senv-real{width:220px;height:140px}
+.sr-flap{border-left:110px solid transparent;border-right:110px solid transparent;border-top:78px solid var(--pkp)}
+.sr-bottom{border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:70px solid #fff0f3}
+.sr-inside{left:10px;right:10px;height:110px}
+.sr-seal{width:48px;height:48px;font-size:1.4rem}
+.sph{width:55px;height:55px}
+.splash-photos{inset:-40px}
+}
+@media(min-width:1024px){
+.splash{padding:3rem 2rem}
+.senv-wrap{width:300px;height:220px}
+.senv-real{width:300px;height:190px}
+.sr-flap{border-left:150px solid transparent;border-right:150px solid transparent;border-top:105px solid var(--pkp)}
+.sr-bottom{border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:95px solid #fff0f3}
+.sr-inside{height:155px}
+.sph{width:80px;height:80px}
+.splash-photos{inset:-70px}
+}
 @media(max-width:560px){section,header.hero,footer.so{padding:3.5rem 1.2rem}.ea{width:220px;height:150px}.eai{border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:75px solid var(--pkb)}.eaf{border-left:110px solid transparent;border-right:110px solid transparent;border-top:80px solid var(--pkp)}.lp{left:15px;right:15px;height:125px}.lca{padding:1.6rem 1.2rem}.qs{margin:1rem;padding:2rem 1.2rem}.senv-wrap{width:230px;height:170px}.senv-real{width:230px;height:150px}.sr-flap{border-left:115px solid transparent;border-right:115px solid transparent;border-top:82px solid var(--pkp)}.sr-bottom{border-left:115px solid transparent;border-right:115px solid transparent;border-bottom:75px solid #fff0f3}.sr-inside{left:10px;right:10px;height:120px}.sph{width:55px;height:55px}.sph:nth-child(1){left:-20px}.sph:nth-child(2){right:-15px}.sph:nth-child(3){left:-25px}.sph:nth-child(4){right:-20px}.sph:nth-child(5){left:-28px}.sph:nth-child(6){right:-25px}}
 </style></head><body>
 <div class="splash" id="splash">
