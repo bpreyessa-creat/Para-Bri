@@ -218,6 +218,9 @@ footer.so .sig{display:block;font-family:'Caveat',cursive;font-size:2.4rem;font-
 </div>
 <div class="mpage" id="mainPage">
 <audio id="audioPlayer" preload="auto" loop><source src="cancion.mp3.mp3" type="audio/mpeg"></audio>
+ 
+<audio id="audioC3" preload="auto" loop><source src="cancion3.mp3" type="audio/mpeg"></audio>
+
 <div class="ab" id="adminBanner" hidden>🔧 MODO PREVISUALIZACION — Solo tu ves esto, Paolo.</div>
 <div class="fh" aria-hidden="true">
 <span style="left:8%;animation-duration:16s;--drift:20px;">♥</span>
@@ -347,8 +350,11 @@ cartas:[
 {fecha:"2026-09-09",titulo:"Lo que mas amo de ti",efecto:"",capas:[
 {emoji:"\u{1F339}",titulo:"Lo que mas amo de ti",texto:"Sabes que es lo que mas amo de ti? Tu mente, tu forma de pensar, como siempre dices las cosas correctas en el momento justo. Amo tus consejos, porque siempre tienes razon. Amo que tomas buenas decisiones, que piensas con claridad, que siempre quieres lo mejor para mi y me apoyas en todo. Tu no solo eres mi novia, eres la persona mas sabia que conozco, y tenerte a mi lado me hace sentir que todo va a estar bien. \u{1F339}",boton:"Ver foto \u{1F4F8}"},
 {tipo:"gal",titulo:"Mi persona favorita \u{1F339}",fotos:[{s:"https://i.imgur.com/rKwSxCs.jpeg",c:"Esta carta demuestra como eres tan linda con tus detalles y lo bonito que te expresas brindandome tu apoyo y ayudandome siempre, y si, aún la conservo.Te amo \u{1F495}"}]}]},
-{fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazon",efecto:"",capas:[
-{emoji:"\u{1F4F8}",titulo:"Un recuerdo que guardo en el corazon",texto:"Hay un momento contigo que siempre llevo conmigo. Ese momento en que supe que eras la persona con la que queria estar. No necesite mas senales, solo basto verte, sentirte cerca, y saber que contigo todo tenia sentido. Ese recuerdo lo guardo como un tesoro. \u{1F4F8}"}]},
+
+{fecha:"2026-09-10",titulo:"Un recuerdo que guardo en el corazon",efecto:"",musica3:true,capas:[
+{emoji:"\u{1F4F8}",titulo:"Un recuerdo que guardo en el corazon",texto:"Hay un momento que me hiciste muy feliz y me sorprendiste tanto que no supe como reaccionar. Cuando me diste este hermoso regalo, un detalle que nunca antes habia recibido y me hiciste sentir muy especial. Ese recuerdo lo guardo como un tesoro. \u{1F4F8}",boton:"Ver el recuerdo \u{1F381}"},
+{tipo:"gal",titulo:"Mi tesoro \u{1F496}",fotos:[{s:"https://i.imgur.com/SVk16Ja.jpeg",c:"El regalo mas bonito \u{1F496}"}]}
+]},
 {fecha:"2026-09-11",titulo:"Lo que admiro de ti",efecto:"",capas:[
 {emoji:"\u2B50",titulo:"Lo que admiro de ti",texto:"Brigith, hoy quiero que sepas cuanto te admiro. Admiro tu valentia para enfrentar cada dia, tu dedicacion, tu forma de cuidar a quienes amas. Eres una mujer increible, fuerte y llena de luz. El mundo es mejor porque tu estas en el, y mi mundo es mejor porque tu estas conmigo. \u2B50"}]},
 {fecha:"2026-09-12",titulo:"Mis promesas para ti",efecto:"",capas:[
@@ -493,7 +499,7 @@ else if(ct.efecto==='lilies'){p.textContent=cp.texto;card.appendChild(p);lilyRai
 else{p.textContent=cp.texto;card.appendChild(p);}
 if(cp.boton&&idx<ct.capas.length-1){
 var btn=document.createElement('button');btn.className='lb';btn.textContent=cp.boton;
-btn.addEventListener('click',function(){if(cp.iniciar&&ct.musica)pm();sL(ct,idx+1);});
+btn.addEventListener('click',function(){if(cp.iniciar&&ct.musica)pm();if(ct.musica3){var a3=document.getElementById('audioC3');a3.currentTime=0;a3.play().catch(function(){});}sL(ct,idx+1); Y busca esto en la función cM:  function cM(ct){mO.hidden=true;if(twI){clearInterval(twI);twI=null;} lC.innerHTML='';if(ct&&ct.musica)sm();} Reemplázalo por:  function cM(ct){mO.hidden=true;if(twI){clearInterval(twI);twI=null;} lC.innerHTML='';if(ct&&ct.musica)sm();var a3=document.getElementById('audioC3');if(a3){a3.pause();a3.currentTime=0;}}});
 card.appendChild(btn);}}
 lC.appendChild(card);}
 function sSi(ct){var card=document.createElement('div');card.className='lca';
